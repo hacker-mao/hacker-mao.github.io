@@ -111,7 +111,10 @@
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5808046-4c8ab5ef023825e9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5808046-97eb838edb90d38a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5808046-029bf539b5916b9d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:updated_time" content="2018-10-29T06:19:44.359Z">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5808046-0a279d5c09a54086.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5808046-bb5edd810596904c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5808046-04497aff6bc28617.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2018-10-29T17:06:54.848Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="[hackme.inndy.tw] Reversing wp">
 <meta name="twitter:description" content="最近看书看的没有状态，好无聊…边做点简单的re题边看书学习吧 helloworld 输入数字314159265就完事….   simple 对需要比较的那个字符串ascii码减1便是flag   exp: 12345678#-*- coding : utf-8 -*-a = &amp;quot;UIJT.JT.ZPVS.GMBH&amp;quot;b = &amp;quot;&amp;quot;for i in a:	b +=">
@@ -385,7 +388,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  7.4k
+                  7.8k
                 </span>
               
 
@@ -401,7 +404,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  43
+                  45
                 </span>
               
             </div>
@@ -543,7 +546,26 @@
 <p><img src="https://upload-images.jianshu.io/upload_images/5808046-4c8ab5ef023825e9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
 <p><img src="https://upload-images.jianshu.io/upload_images/5808046-97eb838edb90d38a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
 <p><img src="https://upload-images.jianshu.io/upload_images/5808046-029bf539b5916b9d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-
+<h1 id="mov"><a href="#mov" class="headerlink" title="mov"></a>mov</h1><ul>
+<li>这道题ida一打开很吓人，全是mov指令，一查才知道这是用了<a href="https://github.com/xoreaxeaxeax/movfuscator" target="_blank" rel="noopener">movfuscator</a>混淆机制，但是无意间发现程序只会对输入长度内的字符进行校验，如果输入的刚好是flag的前x位，都会返回Good flag，否则返回bad flag</li>
+</ul>
+<p><img src="https://upload-images.jianshu.io/upload_images/5808046-0a279d5c09a54086.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<ul>
+<li>那么直接写个脚本爆破即可</li>
+</ul>
+<p>exp:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">import subprocess</span><br><span class="line">import string</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">baopo = lambda : subprocess.Popen(&apos;./mov&apos;, shell=True, stdin=subprocess.PIPE, stdout=subprocess.PIPE)</span><br><span class="line"></span><br><span class="line">flag = &quot;F&quot;</span><br><span class="line"></span><br><span class="line">while flag[-1] != &apos;&#125;&apos;:</span><br><span class="line">	for i in string.printable:</span><br><span class="line">		p = baopo()</span><br><span class="line">		p.stdin.write(flag + i)</span><br><span class="line">		if &apos;Good&apos; in p.stdout.read():</span><br><span class="line">			flag += i</span><br><span class="line">			break </span><br><span class="line"></span><br><span class="line">print flag</span><br></pre></td></tr></table></figure>
+<h1 id="a-maze"><a href="#a-maze" class="headerlink" title="a-maze"></a>a-maze</h1><ul>
+<li>首先tar -Jxvf maze.txz解压文件，然后程序主要就是会读取map文件的十六进制保存在堆里，然后对我们的输入进行逐位校验，最终当v2 = -1时我们的输入才算正确</li>
+</ul>
+<p><img src="https://upload-images.jianshu.io/upload_images/5808046-bb5edd810596904c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5808046-04497aff6bc28617.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<ul>
+<li>这里我们根据最后v2 = -1的条件，以及下面的这个校验得出v2是个整数</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">LODWORD(v2) = *(_DWORD *)(qword_601088 + (v2 &lt;&lt; 9) + 4LL * (*a1 &amp; 0x7F))</span><br></pre></td></tr></table></figure>
+<p>然后根据以上条件写个递归算法来从后面往前爆破flag</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">#coding: utf-8</span><br><span class="line">import string</span><br><span class="line"></span><br><span class="line">f = open(&apos;./map&apos;,&apos;rb&apos;)</span><br><span class="line">content = f.read().encode(&apos;hex&apos;)</span><br><span class="line">list = []</span><br><span class="line">for i in range(0,len(content),8):</span><br><span class="line">	a = content[i:i+2]</span><br><span class="line">	b = content[i+2:i+4]</span><br><span class="line">	c = content[i+4:i+6]</span><br><span class="line">	d = content[i+6:i+8]</span><br><span class="line">	tmp = int(&apos;0x&apos; + d + c + b + a,16)</span><br><span class="line">	list.append(tmp)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">flag = &quot;&quot;</span><br><span class="line"></span><br><span class="line">def baopo(v2):</span><br><span class="line">	global flag</span><br><span class="line">	if v2 == 0:</span><br><span class="line">		exit(0)</span><br><span class="line">	for i in range(0x20,0x7f):</span><br><span class="line">		for j in range(len(list)):</span><br><span class="line">			if list[j] == v2 and (j * 4 - 4 * i) % 512 == 0 : #j是按4 byte分组的序号，j * 4得到偏移</span><br><span class="line">				v2 = (j*4 - 4*i) / 512</span><br><span class="line">				flag = chr(i) + flag</span><br><span class="line">				print flag</span><br><span class="line">				baopo(v2)</span><br><span class="line">				</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">baopo(0xffffffff)</span><br></pre></td></tr></table></figure>
       
     </div>
     
@@ -764,7 +786,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#helloworld"><span class="nav-number">1.</span> <span class="nav-text">helloworld</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#simple"><span class="nav-number">2.</span> <span class="nav-text">simple</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#passthis"><span class="nav-number">3.</span> <span class="nav-text">passthis</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#pyyy"><span class="nav-number">4.</span> <span class="nav-text">pyyy</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#accumulator"><span class="nav-number">5.</span> <span class="nav-text">accumulator</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#GCCC"><span class="nav-number">6.</span> <span class="nav-text">GCCC</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ccc"><span class="nav-number">7.</span> <span class="nav-text">ccc</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#bitx"><span class="nav-number">8.</span> <span class="nav-text">bitx</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2018-rev"><span class="nav-number">9.</span> <span class="nav-text">2018-rev</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#what-the-hell"><span class="nav-number">10.</span> <span class="nav-text">what-the-hell</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#unpackme"><span class="nav-number">11.</span> <span class="nav-text">unpackme</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#helloworld"><span class="nav-number">1.</span> <span class="nav-text">helloworld</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#simple"><span class="nav-number">2.</span> <span class="nav-text">simple</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#passthis"><span class="nav-number">3.</span> <span class="nav-text">passthis</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#pyyy"><span class="nav-number">4.</span> <span class="nav-text">pyyy</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#accumulator"><span class="nav-number">5.</span> <span class="nav-text">accumulator</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#GCCC"><span class="nav-number">6.</span> <span class="nav-text">GCCC</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ccc"><span class="nav-number">7.</span> <span class="nav-text">ccc</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#bitx"><span class="nav-number">8.</span> <span class="nav-text">bitx</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2018-rev"><span class="nav-number">9.</span> <span class="nav-text">2018-rev</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#what-the-hell"><span class="nav-number">10.</span> <span class="nav-text">what-the-hell</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#unpackme"><span class="nav-number">11.</span> <span class="nav-text">unpackme</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#mov"><span class="nav-number">12.</span> <span class="nav-text">mov</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#a-maze"><span class="nav-number">13.</span> <span class="nav-text">a-maze</span></a></li></ol></div>
             
 
           </div>
@@ -822,7 +844,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共19k字</span>
+  <span class="post-count">博客全站共19.4k字</span>
 </div>
 
         
