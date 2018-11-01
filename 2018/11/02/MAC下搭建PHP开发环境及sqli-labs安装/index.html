@@ -72,7 +72,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="php,web,sqli-labs," />
 
 
 
@@ -83,17 +83,37 @@
 
 
 
-<meta name="description" content="175.组合两个表1select FirstName, LastName, City, State from Person left join Address on Person.PersonId = Address.PersonId 176.第二高的薪水12#MySQL中的IFNULL函数类似于Oracle中的NVL函数，其表达式为：IFNULL(expr1,expr2)，含义是：如果第一个参数">
+<meta name="description" content="为了学习web，首先要搭建php开发环境，由于我用的是mac，所以首选用MAMP来搭建  首先确保互联网共享状态是关闭的，在系统偏好设置的共享里面设置     然后安装MAMP    安装好了会有MAMP和MAMP PRO，打开MAMP，Start Servers    在localhost:8888就会有我们的服务    点击Preferences，在Ports修改Apache和Mysql端口">
+<meta name="keywords" content="php,web,sqli-labs">
 <meta property="og:type" content="article">
-<meta property="og:title" content="leetcode_数据库">
-<meta property="og:url" content="http://yoursite.com/2018/09/30/leetcode-数据库/index.html">
+<meta property="og:title" content="MAC下搭建PHP开发环境及sqli-labs安装">
+<meta property="og:url" content="http://yoursite.com/2018/11/02/MAC下搭建PHP开发环境及sqli-labs安装/index.html">
 <meta property="og:site_name" content="1mpossible">
-<meta property="og:description" content="175.组合两个表1select FirstName, LastName, City, State from Person left join Address on Person.PersonId = Address.PersonId 176.第二高的薪水12#MySQL中的IFNULL函数类似于Oracle中的NVL函数，其表达式为：IFNULL(expr1,expr2)，含义是：如果第一个参数">
+<meta property="og:description" content="为了学习web，首先要搭建php开发环境，由于我用的是mac，所以首选用MAMP来搭建  首先确保互联网共享状态是关闭的，在系统偏好设置的共享里面设置     然后安装MAMP    安装好了会有MAMP和MAMP PRO，打开MAMP，Start Servers    在localhost:8888就会有我们的服务    点击Preferences，在Ports修改Apache和Mysql端口">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-11-01T20:04:33.414Z">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5808046-a83c32d1afa593be.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5808046-345d9581e9819a70.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5808046-1daa7180be68972c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5808046-7bf20773a1fb8deb.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5808046-8b28b890bd4235b1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5808046-ef62abe85f9b0bfc.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5808046-784b8380a3731b8d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5808046-015a4e7909311231.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5808046-7b69ef151c90806d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5808046-7acb47e49db8e344.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5808046-d160075834dd1ceb.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5808046-afda662f63e2e706.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5808046-1ce416d259d3b977.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5808046-4c9d4cfd83f8fc76.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5808046-1312b54975b1d384.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5808046-fc0c9788dc1066f8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5808046-bb015ba7b2df0285.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5808046-5478000ceea59da1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2018-11-01T20:04:21.353Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="leetcode_数据库">
-<meta name="twitter:description" content="175.组合两个表1select FirstName, LastName, City, State from Person left join Address on Person.PersonId = Address.PersonId 176.第二高的薪水12#MySQL中的IFNULL函数类似于Oracle中的NVL函数，其表达式为：IFNULL(expr1,expr2)，含义是：如果第一个参数">
+<meta name="twitter:title" content="MAC下搭建PHP开发环境及sqli-labs安装">
+<meta name="twitter:description" content="为了学习web，首先要搭建php开发环境，由于我用的是mac，所以首选用MAMP来搭建  首先确保互联网共享状态是关闭的，在系统偏好设置的共享里面设置     然后安装MAMP    安装好了会有MAMP和MAMP PRO，打开MAMP，Start Servers    在localhost:8888就会有我们的服务    点击Preferences，在Ports修改Apache和Mysql端口">
+<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/5808046-a83c32d1afa593be.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 
 
 
@@ -123,13 +143,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/09/30/leetcode-数据库/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/11/02/MAC下搭建PHP开发环境及sqli-labs安装/"/>
 
 
 
 
 
-  <title>leetcode_数据库 | 1mpossible</title>
+  <title>MAC下搭建PHP开发环境及sqli-labs安装 | 1mpossible</title>
   
 
 
@@ -268,7 +288,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/30/leetcode-数据库/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/02/MAC下搭建PHP开发环境及sqli-labs安装/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="D4rk3r">
@@ -285,7 +305,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">leetcode_数据库</h1>
+          <h1 class="post-title" itemprop="name headline">MAC下搭建PHP开发环境及sqli-labs安装</h1>
         
 
         <div class="post-meta">
@@ -297,8 +317,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-30T21:42:36+08:00">
-                2018-09-30
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-02T02:36:01+08:00">
+                2018-11-02
               </time>
             
 
@@ -308,6 +328,28 @@
           </span>
 
           
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/web/" itemprop="url" rel="index">
+                    <span itemprop="name">web</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -316,8 +358,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/09/30/leetcode-数据库/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2018/09/30/leetcode-数据库/" itemprop="commentCount"></span>
+                <a href="/2018/11/02/MAC下搭建PHP开发环境及sqli-labs安装/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2018/11/02/MAC下搭建PHP开发环境及sqli-labs安装/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -325,7 +367,7 @@
 
           
           
-             <span id="/2018/09/30/leetcode-数据库/" class="leancloud_visitors" data-flag-title="leetcode_数据库">
+             <span id="/2018/11/02/MAC下搭建PHP开发环境及sqli-labs安装/" class="leancloud_visitors" data-flag-title="MAC下搭建PHP开发环境及sqli-labs安装">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -351,7 +393,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  320
+                  478
                 </span>
               
 
@@ -388,22 +430,86 @@
       
 
       
-        <h1 id="175-组合两个表"><a href="#175-组合两个表" class="headerlink" title="175.组合两个表"></a>175.组合两个表</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select FirstName, LastName, City, State from Person left join Address on Person.PersonId = Address.PersonId</span><br></pre></td></tr></table></figure>
-<h1 id="176-第二高的薪水"><a href="#176-第二高的薪水" class="headerlink" title="176.第二高的薪水"></a>176.第二高的薪水</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#MySQL中的IFNULL函数类似于Oracle中的NVL函数，其表达式为：IFNULL(expr1,expr2)，含义是：如果第一个参数不为空，则返回第一个参数，否则返回第二个参数。</span><br><span class="line">select IFNULL((select DISTINCT Salary from Employee order by Salary DESC limit 1,1),NULL) as SecondHighestSalary</span><br></pre></td></tr></table></figure>
-<h1 id="177-第N高的薪水"><a href="#177-第N高的薪水" class="headerlink" title="177.第N高的薪水"></a>177.第N高的薪水</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">BEGIN</span><br><span class="line">  SET N = N-1;</span><br><span class="line">  RETURN (</span><br><span class="line">      # Write your MySQL query statement below.     </span><br><span class="line">      select IFNULL((select DISTINCT Salary from Employee order by Salary DESC limit N,1),NULL)</span><br><span class="line">  );</span><br><span class="line">END</span><br></pre></td></tr></table></figure>
-<h1 id="178-分数排名"><a href="#178-分数排名" class="headerlink" title="178.分数排名"></a>178.分数排名</h1><ul>
-<li>查询去重后分数的，条件：当前行分数大于等于同表的分数的count数量，去重显示，然后降序输出</li>
+        <ul>
+<li><p>为了学习web，首先要搭建php开发环境，由于我用的是mac，所以首选用<a href="https://www.mamp.info/en/" target="_blank" rel="noopener">MAMP</a>来搭建</p>
+</li>
+<li><p>首先确保互联网共享状态是关闭的，在<strong><em>系统偏好设置</em></strong>的<strong><em>共享</em></strong>里面设置</p>
+</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select Score,(select COUNT(DISTINCT Score) from Scores where Score &gt;= s.Score)  as Rank from Scores as s order by Score DESC</span><br></pre></td></tr></table></figure>
-<h1 id="180-连续出现的数字"><a href="#180-连续出现的数字" class="headerlink" title="180.连续出现的数字"></a>180.连续出现的数字</h1><ul>
-<li>Id 从1开始递增的，只需要查找出 Id 连续且 Num 相等的数字即可</li>
+<p><img src="https://upload-images.jianshu.io/upload_images/5808046-a83c32d1afa593be.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<ul>
+<li>然后安装MAMP</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">select distinct l1.Num as ConsecutiveNums </span><br><span class="line">from Logs as l1, Logs as l2, Logs as l3 </span><br><span class="line">where l1.Id = l2.Id-1 and l2.Id = l3.Id-1 </span><br><span class="line">and l1.Num = l2.Num and l2.Num = l3.Num</span><br></pre></td></tr></table></figure>
-<h1 id="181-超过经理收入的员工"><a href="#181-超过经理收入的员工" class="headerlink" title="181.超过经理收入的员工"></a>181.超过经理收入的员工</h1><ul>
-<li>只需要员工的Salary大于ManagerId的Salary即可</li>
+<p><img src="https://upload-images.jianshu.io/upload_images/5808046-345d9581e9819a70.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<ul>
+<li>安装好了会有MAMP和MAMP PRO，打开MAMP，<em>Start Servers</em></li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">select em.Name as Employee from Employee em, Employee em1</span><br><span class="line">where em.Salary &gt; em1.Salary and em.ManagerId = em1.Id</span><br></pre></td></tr></table></figure>
-<h1 id="182-查找重复的电子邮箱"><a href="#182-查找重复的电子邮箱" class="headerlink" title="182.查找重复的电子邮箱"></a>182.查找重复的电子邮箱</h1>
+<p><img src="https://upload-images.jianshu.io/upload_images/5808046-1daa7180be68972c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<ul>
+<li>在localhost:8888就会有我们的服务</li>
+</ul>
+<p><img src="https://upload-images.jianshu.io/upload_images/5808046-7bf20773a1fb8deb.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<ul>
+<li>点击<strong><em>Preferences</em></strong>，在<strong><em>Ports</em></strong>修改Apache和Mysql端口为80和3306</li>
+</ul>
+<p><img src="https://upload-images.jianshu.io/upload_images/5808046-8b28b890bd4235b1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5808046-ef62abe85f9b0bfc.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5808046-784b8380a3731b8d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<ul>
+<li>然后我为了方便更改我的默认目录</li>
+</ul>
+<p><img src="https://upload-images.jianshu.io/upload_images/5808046-015a4e7909311231.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5808046-7b69ef151c90806d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<ul>
+<li>关于如何更改mysql的root密码，一开始命令行没有mysql这个命令，出现问题的原因是在系统目录下执行mysql 默认会执行到/usr/local/mysql 而设备的该目录下并没有mysql的可执行文件<br>首先找到mysql这个文件</li>
+</ul>
+<p><img src="https://upload-images.jianshu.io/upload_images/5808046-7acb47e49db8e344.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<ul>
+<li>创建软连接，操作是：命令行根目录执行以下命令</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim ~/.bash_profile</span><br></pre></td></tr></table></figure>
+<ul>
+<li>将下面的内容写入到.bash_profile中</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alias mysql=&apos;/Applications/MAMP/Library/bin/mysql&apos;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>保存后执行</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">source ~/.bash_profile</span><br></pre></td></tr></table></figure>
+<ul>
+<li>然后就可以在终端登陆mysql了</li>
+</ul>
+<p><img src="https://upload-images.jianshu.io/upload_images/5808046-d160075834dd1ceb.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#修改root的密码为md5(&apos;root&apos;)</span><br><span class="line">SET PASSWORD FOR &apos;root&apos;@&apos;localhost&apos; = PASSWORD(&apos;newpass&apos;);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>重启服务</li>
+</ul>
+<p><img src="https://upload-images.jianshu.io/upload_images/5808046-afda662f63e2e706.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<ul>
+<li>然后我这里顺便把<a href="https://github.com/Audi-1/sqli-labs" target="_blank" rel="noopener">sqli-labs</a>也装了，下载文件夹然后放到刚刚更改的目录下，并修改<em>/sql-connections/db-creds.inc</em>文件将数据库的username和password修改为你自己的mysql账号和密码（由于我没有更改默认的账号密码所以这里就不用改了）</li>
+</ul>
+<p><img src="https://upload-images.jianshu.io/upload_images/5808046-1ce416d259d3b977.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5808046-4c9d4cfd83f8fc76.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5808046-1312b54975b1d384.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<ul>
+<li>这里点击<strong><em>Setup/reset Database for labs</em></strong>会出现下面这种情况</li>
+</ul>
+<p><img src="https://upload-images.jianshu.io/upload_images/5808046-fc0c9788dc1066f8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<ul>
+<li>上网查了一下，主要原因是由于PHP7不再支持mysql_xxx函数而是支持mysqli_xxx函数所致，而原来的sqli-labs是用php5写的，<a href="https://github.com/Audi-1/sqli-labs/issues/11" target="_blank" rel="noopener">详情</a>然后发现有网友有修改版的sqli-labs<a href="https://github.com/Rinkish/Sqli_Edited_Version" target="_blank" rel="noopener">Sqli_Edited_Version</a>使其适应php7.2版本的，然后直接建立库就很舒服</li>
+</ul>
+<p><img src="https://upload-images.jianshu.io/upload_images/5808046-bb015ba7b2df0285.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5808046-5478000ceea59da1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>参考文章：</p>
+<ul>
+<li><p><a href="https://www.jianshu.com/p/ad8d8ebfb816" target="_blank" rel="noopener">https://www.jianshu.com/p/ad8d8ebfb816</a></p>
+</li>
+<li><p><a href="https://bbs.pediy.com/thread-218235.htm" target="_blank" rel="noopener">https://bbs.pediy.com/thread-218235.htm</a></p>
+</li>
+<li><p><a href="https://blog.csdn.net/ONS_cukuyo/article/details/82863382" target="_blank" rel="noopener">https://blog.csdn.net/ONS_cukuyo/article/details/82863382</a></p>
+</li>
+</ul>
+
       
     </div>
     
@@ -423,7 +529,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://yoursite.com/2018/09/30/leetcode-数据库/" title="leetcode_数据库">http://yoursite.com/2018/09/30/leetcode-数据库/</a>
+    <a href="http://yoursite.com/2018/11/02/MAC下搭建PHP开发环境及sqli-labs安装/" title="MAC下搭建PHP开发环境及sqli-labs安装">http://yoursite.com/2018/11/02/MAC下搭建PHP开发环境及sqli-labs安装/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -436,6 +542,16 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/php/" <i class="fa fa-tag"></i> php</a>
+          
+            <a href="/tags/web/" <i class="fa fa-tag"></i> web</a>
+          
+            <a href="/tags/sqli-labs/" <i class="fa fa-tag"></i> sqli-labs</a>
+          
+        </div>
+      
 
       
       
@@ -445,8 +561,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/09/27/arm-pwn/" rel="next" title="arm pwn">
-                <i class="fa fa-chevron-left"></i> arm pwn
+              <a href="/2018/10/24/hackme-inndy-tw-Reversing-wp/" rel="next" title="[hackme.inndy.tw] Reversing wp">
+                <i class="fa fa-chevron-left"></i> [hackme.inndy.tw] Reversing wp
               </a>
             
           </div>
@@ -454,10 +570,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/10/06/Wargames-bandit-通关记录/" rel="prev" title="Wargames--bandit 通关记录">
-                Wargames--bandit 通关记录 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -512,17 +624,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview-wrap sidebar-panel">
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -608,22 +711,6 @@
         </div>
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#175-组合两个表"><span class="nav-number">1.</span> <span class="nav-text">175.组合两个表</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#176-第二高的薪水"><span class="nav-number">2.</span> <span class="nav-text">176.第二高的薪水</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#177-第N高的薪水"><span class="nav-number">3.</span> <span class="nav-text">177.第N高的薪水</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#178-分数排名"><span class="nav-number">4.</span> <span class="nav-text">178.分数排名</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#180-连续出现的数字"><span class="nav-number">5.</span> <span class="nav-text">180.连续出现的数字</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#181-超过经理收入的员工"><span class="nav-number">6.</span> <span class="nav-text">181.超过经理收入的员工</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#182-查找重复的电子邮箱"><span class="nav-number">7.</span> <span class="nav-text">182.查找重复的电子邮箱</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       
