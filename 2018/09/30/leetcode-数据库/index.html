@@ -90,7 +90,7 @@
 <meta property="og:site_name" content="1mpossible">
 <meta property="og:description" content="175.组合两个表1select FirstName, LastName, City, State from Person left join Address on Person.PersonId = Address.PersonId 176.第二高的薪水12#MySQL中的IFNULL函数类似于Oracle中的NVL函数，其表达式为：IFNULL(expr1,expr2)，含义是：如果第一个参数">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-11-02T06:36:40.902Z">
+<meta property="og:updated_time" content="2018-11-03T18:02:31.043Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="leetcode_数据库">
 <meta name="twitter:description" content="175.组合两个表1select FirstName, LastName, City, State from Person left join Address on Person.PersonId = Address.PersonId 176.第二高的薪水12#MySQL中的IFNULL函数类似于Oracle中的NVL函数，其表达式为：IFNULL(expr1,expr2)，含义是：如果第一个参数">
@@ -351,7 +351,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  379
+                  450
                 </span>
               
 
@@ -367,7 +367,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  1
+                  2
                 </span>
               
             </div>
@@ -408,6 +408,11 @@
 <li>识别null是用’is’搭配的而不是’=’</li>
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">select C.Name as Customers from Customers C </span><br><span class="line">left join Orders O on C.Id = O.CustomerId</span><br><span class="line">where O.CustomerId is null</span><br></pre></td></tr></table></figure>
+<h1 id="184-部门工资最高的员工"><a href="#184-部门工资最高的员工" class="headerlink" title="184.部门工资最高的员工"></a>184.部门工资最高的员工</h1><ul>
+<li><p>两个表内联一下，找出员工Salary,DepartmentID在group by DepartmentId最大薪水的列表中即可</p>
+</li>
+<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">select D.Name Department, E.Name Employee, E.Salary</span><br><span class="line">from Employee E inner join Department D on E.DepartmentId = D.Id </span><br><span class="line">where (E.Salary,E.DepartmentId) in (select max(Salary),DepartmentId from Employee group by DepartmentId)</span><br></pre></td></tr></table></figure></li>
+</ul>
 
       
     </div>
@@ -623,7 +628,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#175-组合两个表"><span class="nav-number">1.</span> <span class="nav-text">175.组合两个表</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#176-第二高的薪水"><span class="nav-number">2.</span> <span class="nav-text">176.第二高的薪水</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#177-第N高的薪水"><span class="nav-number">3.</span> <span class="nav-text">177.第N高的薪水</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#178-分数排名"><span class="nav-number">4.</span> <span class="nav-text">178.分数排名</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#180-连续出现的数字"><span class="nav-number">5.</span> <span class="nav-text">180.连续出现的数字</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#181-超过经理收入的员工"><span class="nav-number">6.</span> <span class="nav-text">181.超过经理收入的员工</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#182-查找重复的电子邮箱"><span class="nav-number">7.</span> <span class="nav-text">182.查找重复的电子邮箱</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#183-从不订购的客户"><span class="nav-number">8.</span> <span class="nav-text">183.从不订购的客户</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#175-组合两个表"><span class="nav-number">1.</span> <span class="nav-text">175.组合两个表</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#176-第二高的薪水"><span class="nav-number">2.</span> <span class="nav-text">176.第二高的薪水</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#177-第N高的薪水"><span class="nav-number">3.</span> <span class="nav-text">177.第N高的薪水</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#178-分数排名"><span class="nav-number">4.</span> <span class="nav-text">178.分数排名</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#180-连续出现的数字"><span class="nav-number">5.</span> <span class="nav-text">180.连续出现的数字</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#181-超过经理收入的员工"><span class="nav-number">6.</span> <span class="nav-text">181.超过经理收入的员工</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#182-查找重复的电子邮箱"><span class="nav-number">7.</span> <span class="nav-text">182.查找重复的电子邮箱</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#183-从不订购的客户"><span class="nav-number">8.</span> <span class="nav-text">183.从不订购的客户</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#184-部门工资最高的员工"><span class="nav-number">9.</span> <span class="nav-text">184.部门工资最高的员工</span></a></li></ol></div>
             
 
           </div>
@@ -681,7 +686,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共24k字</span>
+  <span class="post-count">博客全站共25.6k字</span>
 </div>
 
         
