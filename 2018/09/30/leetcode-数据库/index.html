@@ -90,7 +90,7 @@
 <meta property="og:site_name" content="1mpossible">
 <meta property="og:description" content="175.组合两个表1select FirstName, LastName, City, State from Person left join Address on Person.PersonId = Address.PersonId 176.第二高的薪水12#MySQL中的IFNULL函数类似于Oracle中的NVL函数，其表达式为：IFNULL(expr1,expr2)，含义是：如果第一个参数">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-11-03T18:02:31.043Z">
+<meta property="og:updated_time" content="2018-11-05T17:19:13.599Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="leetcode_数据库">
 <meta name="twitter:description" content="175.组合两个表1select FirstName, LastName, City, State from Person left join Address on Person.PersonId = Address.PersonId 176.第二高的薪水12#MySQL中的IFNULL函数类似于Oracle中的NVL函数，其表达式为：IFNULL(expr1,expr2)，含义是：如果第一个参数">
@@ -351,7 +351,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  450
+                  787
                 </span>
               
 
@@ -367,7 +367,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  2
+                  3
                 </span>
               
             </div>
@@ -411,9 +411,25 @@
 <h1 id="184-部门工资最高的员工"><a href="#184-部门工资最高的员工" class="headerlink" title="184.部门工资最高的员工"></a>184.部门工资最高的员工</h1><ul>
 <li><p>两个表内联一下，找出员工Salary,DepartmentID在group by DepartmentId最大薪水的列表中即可</p>
 </li>
-<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">select D.Name Department, E.Name Employee, E.Salary</span><br><span class="line">from Employee E inner join Department D on E.DepartmentId = D.Id </span><br><span class="line">where (E.Salary,E.DepartmentId) in (select max(Salary),DepartmentId from Employee group by DepartmentId)</span><br></pre></td></tr></table></figure></li>
+<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">select D.Name Department, E.Name Employee, E.Salary</span><br><span class="line">from Employee E inner join Department D on E.DepartmentId = D.Id </span><br><span class="line">where (E.Salary,E.DepartmentId) in (select max(Salary),DepartmentId from Employee group by DepartmentId)</span><br></pre></td></tr></table></figure>
+</li>
 </ul>
-
+<h1 id="185-部门工资前三高的员工"><a href="#185-部门工资前三高的员工" class="headerlink" title="185.部门工资前三高的员工"></a>185.部门工资前三高的员工</h1><ul>
+<li>取前三高： 再加入一张Employee表，与第一张Employee表做对比，让E2表中Salary大于E1表中Salary的个数少于3就能得到前三高</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">条件语句中必须为 3 &gt; (...)，子查询中必须是E2.Salary &gt; E1.Salary</span><br><span class="line"></span><br><span class="line">不妨假设E1=E2=[6,5,4,3]，则子查询的过程如下：</span><br><span class="line"></span><br><span class="line">1、E1.Salary=3；则E2.Salary可以取4、5、6；COUNT(DISTINCT E2.Salary)=3</span><br><span class="line"></span><br><span class="line">2、E1.Salary=4；则E2.Salary可以取5、6；COUNT(DISTINCT E2.Salary)=2</span><br><span class="line"></span><br><span class="line">3、E1.Salary=5；则E2.Salary可以取6；COUNT(DISTINCT E2.Salary)=1</span><br><span class="line"></span><br><span class="line">4、E1.Salary=6；则E2.Salary无法取值；COUNT(DISTINCT E2.Salary)=0</span><br><span class="line"></span><br><span class="line">则要令COUNT(DISTINCT E2.Salary)  &lt; 3 的情况有上述的4、3、2.</span><br><span class="line"></span><br><span class="line">也即是说，这等价于取e1.Salary最大的三个值。</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">select D.Name Department, E1.Name Employee, E1.Salary Salary</span><br><span class="line">from Employee E1 inner join Department D on E1.DepartmentId = D.ID</span><br><span class="line">where 3 &gt; (</span><br><span class="line">select count( distinct E2.Salary ) from Employee E2</span><br><span class="line">where E1.Salary &lt; E2.Salary and E1.DepartmentId = E2.DepartmentId)</span><br><span class="line">order by Department,Salary desc</span><br></pre></td></tr></table></figure>
+<ul>
+<li>参考文章：<a href="https://blog.csdn.net/qq_41822173/article/details/80978544" target="_blank" rel="noopener">https://blog.csdn.net/qq_41822173/article/details/80978544</a></li>
+</ul>
+<h1 id="196-删除重复的电子邮箱"><a href="#196-删除重复的电子邮箱" class="headerlink" title="196.删除重复的电子邮箱"></a>196.删除重复的电子邮箱</h1><ul>
+<li>删除邮箱相同且Id大的项</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">delete P1 from Person P1, Person P2 where P1.Email = P2.Email and P1.Id &gt; P2.Id</span><br></pre></td></tr></table></figure>
+<h1 id="197-上升的温度"><a href="#197-上升的温度" class="headerlink" title="197.上升的温度"></a>197.上升的温度</h1><ul>
+<li>DATE数据类型要用to_days函数返回从年份0开始的天数来判断昨天</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select W1.Id from Weather W1, Weather W2 where to_days(W1.RecordDate) = to_days(W2.RecordDate)+1 and W1.Temperature &gt; W2.Temperature</span><br></pre></td></tr></table></figure>
       
     </div>
     
@@ -628,7 +644,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#175-组合两个表"><span class="nav-number">1.</span> <span class="nav-text">175.组合两个表</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#176-第二高的薪水"><span class="nav-number">2.</span> <span class="nav-text">176.第二高的薪水</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#177-第N高的薪水"><span class="nav-number">3.</span> <span class="nav-text">177.第N高的薪水</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#178-分数排名"><span class="nav-number">4.</span> <span class="nav-text">178.分数排名</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#180-连续出现的数字"><span class="nav-number">5.</span> <span class="nav-text">180.连续出现的数字</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#181-超过经理收入的员工"><span class="nav-number">6.</span> <span class="nav-text">181.超过经理收入的员工</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#182-查找重复的电子邮箱"><span class="nav-number">7.</span> <span class="nav-text">182.查找重复的电子邮箱</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#183-从不订购的客户"><span class="nav-number">8.</span> <span class="nav-text">183.从不订购的客户</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#184-部门工资最高的员工"><span class="nav-number">9.</span> <span class="nav-text">184.部门工资最高的员工</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#175-组合两个表"><span class="nav-number">1.</span> <span class="nav-text">175.组合两个表</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#176-第二高的薪水"><span class="nav-number">2.</span> <span class="nav-text">176.第二高的薪水</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#177-第N高的薪水"><span class="nav-number">3.</span> <span class="nav-text">177.第N高的薪水</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#178-分数排名"><span class="nav-number">4.</span> <span class="nav-text">178.分数排名</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#180-连续出现的数字"><span class="nav-number">5.</span> <span class="nav-text">180.连续出现的数字</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#181-超过经理收入的员工"><span class="nav-number">6.</span> <span class="nav-text">181.超过经理收入的员工</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#182-查找重复的电子邮箱"><span class="nav-number">7.</span> <span class="nav-text">182.查找重复的电子邮箱</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#183-从不订购的客户"><span class="nav-number">8.</span> <span class="nav-text">183.从不订购的客户</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#184-部门工资最高的员工"><span class="nav-number">9.</span> <span class="nav-text">184.部门工资最高的员工</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#185-部门工资前三高的员工"><span class="nav-number">10.</span> <span class="nav-text">185.部门工资前三高的员工</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#196-删除重复的电子邮箱"><span class="nav-number">11.</span> <span class="nav-text">196.删除重复的电子邮箱</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#197-上升的温度"><span class="nav-number">12.</span> <span class="nav-text">197.上升的温度</span></a></li></ol></div>
             
 
           </div>
@@ -686,7 +702,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共26.8k字</span>
+  <span class="post-count">博客全站共29.4k字</span>
 </div>
 
         
