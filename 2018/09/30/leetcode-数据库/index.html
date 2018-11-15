@@ -90,7 +90,7 @@
 <meta property="og:site_name" content="1mpossible">
 <meta property="og:description" content="175.组合两个表1select FirstName, LastName, City, State from Person left join Address on Person.PersonId = Address.PersonId 176.第二高的薪水12#MySQL中的IFNULL函数类似于Oracle中的NVL函数，其表达式为：IFNULL(expr1,expr2)，含义是：如果第一个参数">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-11-07T17:34:28.312Z">
+<meta property="og:updated_time" content="2018-11-08T02:14:58.061Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="leetcode_数据库">
 <meta name="twitter:description" content="175.组合两个表1select FirstName, LastName, City, State from Person left join Address on Person.PersonId = Address.PersonId 176.第二高的薪水12#MySQL中的IFNULL函数类似于Oracle中的NVL函数，其表达式为：IFNULL(expr1,expr2)，含义是：如果第一个参数">
@@ -351,7 +351,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1.1k
+                  1.3k
                 </span>
               
 
@@ -367,7 +367,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  5
+                  6
                 </span>
               
             </div>
@@ -439,6 +439,16 @@
 </ul>
 <h1 id="595-大的国家"><a href="#595-大的国家" class="headerlink" title="595.大的国家"></a>595.大的国家</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select name,population,area from World where population &gt; 25000000 or area &gt; 3000000</span><br></pre></td></tr></table></figure>
 <h1 id="596-超过5名学生的课"><a href="#596-超过5名学生的课" class="headerlink" title="596.超过5名学生的课"></a>596.超过5名学生的课</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select class from (select distinct * from courses) c group by class having count(student) &gt;= 5</span><br></pre></td></tr></table></figure>
+<h1 id="601-体育馆的人流量"><a href="#601-体育馆的人流量" class="headerlink" title="601.体育馆的人流量"></a>601.体育馆的人流量</h1><ul>
+<li>拆分成三个表，s1,s2,s3,当显示s1的时候分别有三种情况：</li>
+<li>s1 s2 s3</li>
+<li>s2 s1 s3</li>
+<li><p>s2 s3 s1</p>
+</li>
+<li><p>可能会有重复出现的情况，用distinct即可解决</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">select distinct s1.* from stadium s1, stadium s2, stadium s3 </span><br><span class="line">where s1.people &gt;= 100 and s2.people &gt;= 100 and s3.people &gt;= 100</span><br><span class="line">and (</span><br><span class="line">(s1.id = s2.id-1 and s2.id = s3.id-1)</span><br><span class="line">or (s2.id = s1.id-1 and s1.id = s3.id-1)</span><br><span class="line">or (s2.id = s3.id-1 and s3.id = s1.id-1)</span><br><span class="line">    )</span><br><span class="line">order by s1.id</span><br></pre></td></tr></table></figure>
 <h1 id="620-有趣的电影"><a href="#620-有趣的电影" class="headerlink" title="620.有趣的电影"></a>620.有趣的电影</h1><ul>
 <li>奇数用求除2的余数不为0来表示</li>
 </ul>
@@ -662,7 +672,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#175-组合两个表"><span class="nav-number">1.</span> <span class="nav-text">175.组合两个表</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#176-第二高的薪水"><span class="nav-number">2.</span> <span class="nav-text">176.第二高的薪水</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#177-第N高的薪水"><span class="nav-number">3.</span> <span class="nav-text">177.第N高的薪水</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#178-分数排名"><span class="nav-number">4.</span> <span class="nav-text">178.分数排名</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#180-连续出现的数字"><span class="nav-number">5.</span> <span class="nav-text">180.连续出现的数字</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#181-超过经理收入的员工"><span class="nav-number">6.</span> <span class="nav-text">181.超过经理收入的员工</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#182-查找重复的电子邮箱"><span class="nav-number">7.</span> <span class="nav-text">182.查找重复的电子邮箱</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#183-从不订购的客户"><span class="nav-number">8.</span> <span class="nav-text">183.从不订购的客户</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#184-部门工资最高的员工"><span class="nav-number">9.</span> <span class="nav-text">184.部门工资最高的员工</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#185-部门工资前三高的员工"><span class="nav-number">10.</span> <span class="nav-text">185.部门工资前三高的员工</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#196-删除重复的电子邮箱"><span class="nav-number">11.</span> <span class="nav-text">196.删除重复的电子邮箱</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#197-上升的温度"><span class="nav-number">12.</span> <span class="nav-text">197.上升的温度</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#262-行程和用户"><span class="nav-number">13.</span> <span class="nav-text">262.行程和用户</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#595-大的国家"><span class="nav-number">14.</span> <span class="nav-text">595.大的国家</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#596-超过5名学生的课"><span class="nav-number">15.</span> <span class="nav-text">596.超过5名学生的课</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#620-有趣的电影"><span class="nav-number">16.</span> <span class="nav-text">620.有趣的电影</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#626-换座位"><span class="nav-number">17.</span> <span class="nav-text">626.换座位</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#627-交换工资"><span class="nav-number">18.</span> <span class="nav-text">627.交换工资</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#175-组合两个表"><span class="nav-number">1.</span> <span class="nav-text">175.组合两个表</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#176-第二高的薪水"><span class="nav-number">2.</span> <span class="nav-text">176.第二高的薪水</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#177-第N高的薪水"><span class="nav-number">3.</span> <span class="nav-text">177.第N高的薪水</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#178-分数排名"><span class="nav-number">4.</span> <span class="nav-text">178.分数排名</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#180-连续出现的数字"><span class="nav-number">5.</span> <span class="nav-text">180.连续出现的数字</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#181-超过经理收入的员工"><span class="nav-number">6.</span> <span class="nav-text">181.超过经理收入的员工</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#182-查找重复的电子邮箱"><span class="nav-number">7.</span> <span class="nav-text">182.查找重复的电子邮箱</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#183-从不订购的客户"><span class="nav-number">8.</span> <span class="nav-text">183.从不订购的客户</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#184-部门工资最高的员工"><span class="nav-number">9.</span> <span class="nav-text">184.部门工资最高的员工</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#185-部门工资前三高的员工"><span class="nav-number">10.</span> <span class="nav-text">185.部门工资前三高的员工</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#196-删除重复的电子邮箱"><span class="nav-number">11.</span> <span class="nav-text">196.删除重复的电子邮箱</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#197-上升的温度"><span class="nav-number">12.</span> <span class="nav-text">197.上升的温度</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#262-行程和用户"><span class="nav-number">13.</span> <span class="nav-text">262.行程和用户</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#595-大的国家"><span class="nav-number">14.</span> <span class="nav-text">595.大的国家</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#596-超过5名学生的课"><span class="nav-number">15.</span> <span class="nav-text">596.超过5名学生的课</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#601-体育馆的人流量"><span class="nav-number">16.</span> <span class="nav-text">601.体育馆的人流量</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#620-有趣的电影"><span class="nav-number">17.</span> <span class="nav-text">620.有趣的电影</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#626-换座位"><span class="nav-number">18.</span> <span class="nav-text">626.换座位</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#627-交换工资"><span class="nav-number">19.</span> <span class="nav-text">627.交换工资</span></a></li></ol></div>
             
 
           </div>
@@ -720,7 +730,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共30.7k字</span>
+  <span class="post-count">博客全站共33.5k字</span>
 </div>
 
         
