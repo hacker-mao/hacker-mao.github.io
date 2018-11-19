@@ -72,7 +72,7 @@
 
 
 
-  <meta name="keywords" content="ctf,pwn,Integer Overflow," />
+  <meta name="keywords" content="pwn,ctf,Integer Overflow," />
 
 
 
@@ -84,7 +84,7 @@
 
 
 <meta name="description" content="挺有意思的一道题，用到了之前刷bandit的一些技巧，程序的漏洞就是利用指令的整数溢出执行err函数然后getshell     程序就是一个简单计算器的实现，但是init函数中设置了几个signal，然后err函数可以让我们执行一个linux的程序，所以我们首先是想着如何触发信号机制去执行err函数，可以看到几个signal信号中最有可能被我们利用的就是浮点异常，一般浮点异常我们最容易想到的就是">
-<meta name="keywords" content="ctf,pwn,Integer Overflow">
+<meta name="keywords" content="pwn,ctf,Integer Overflow">
 <meta property="og:type" content="article">
 <meta property="og:title" content="[2018Hackergame] calc ">
 <meta property="og:url" content="http://yoursite.com/2018/10/12/2018Hackergame-calc/index.html">
@@ -476,9 +476,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/ctf/" <i class="fa fa-tag"></i> ctf</a>
-          
             <a href="/tags/pwn/" <i class="fa fa-tag"></i> pwn</a>
+          
+            <a href="/tags/ctf/" <i class="fa fa-tag"></i> ctf</a>
           
             <a href="/tags/Integer-Overflow/" <i class="fa fa-tag"></i> Integer Overflow</a>
           
