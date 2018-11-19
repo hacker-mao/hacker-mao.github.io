@@ -72,7 +72,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="PyCrypto,python," />
 
 
 
@@ -83,16 +83,26 @@
 
 
 
-<meta name="description" content="Impossible -&amp;gt; I&apos;m possible">
-<meta property="og:type" content="website">
-<meta property="og:title" content="1mpossible">
-<meta property="og:url" content="http://yoursite.com/tags/sqli-labs/index.html">
+<meta name="description" content="之前一直想用这个库，结果在mac上安装老是报错，只能在ubuntu上用，今天花了一上午终于装上了 12#安装命令sudo easy_install PyCrypto    看到是include文件夹有点问题，还有clang，于是将include改名，然后装个llvm  12mv /usr/local/include /usr/local/include.oldbrew install llvm">
+<meta name="keywords" content="PyCrypto,python">
+<meta property="og:type" content="article">
+<meta property="og:title" content="mac安装PyCrypto库">
+<meta property="og:url" content="http://yoursite.com/2018/11/19/mac安装PyCrypto库/index.html">
 <meta property="og:site_name" content="1mpossible">
-<meta property="og:description" content="Impossible -&amp;gt; I&apos;m possible">
+<meta property="og:description" content="之前一直想用这个库，结果在mac上安装老是报错，只能在ubuntu上用，今天花了一上午终于装上了 12#安装命令sudo easy_install PyCrypto    看到是include文件夹有点问题，还有clang，于是将include改名，然后装个llvm  12mv /usr/local/include /usr/local/include.oldbrew install llvm">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5808046-9ee587386ad8cd2c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5808046-94c43385a7731cf2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5808046-bd35cc40e7621726.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5808046-7be294c567cb0620.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5808046-fb8a913112b97f02.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5808046-50052c40c71d54c2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5808046-c9a326d5235b9617.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2018-11-19T03:26:12.247Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="1mpossible">
-<meta name="twitter:description" content="Impossible -&amp;gt; I&apos;m possible">
+<meta name="twitter:title" content="mac安装PyCrypto库">
+<meta name="twitter:description" content="之前一直想用这个库，结果在mac上安装老是报错，只能在ubuntu上用，今天花了一上午终于装上了 12#安装命令sudo easy_install PyCrypto    看到是include文件夹有点问题，还有clang，于是将include改名，然后装个llvm  12mv /usr/local/include /usr/local/include.oldbrew install llvm">
+<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/5808046-9ee587386ad8cd2c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 
 
 
@@ -122,13 +132,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/tags/sqli-labs/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/11/19/mac安装PyCrypto库/"/>
 
 
 
 
 
-  <title>标签: sqli-labs | 1mpossible</title>
+  <title>mac安装PyCrypto库 | 1mpossible</title>
   
 
 
@@ -157,7 +167,7 @@
     
   
 
-  <div class="container sidebar-position-left ">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
 <a href="https://github.com/hacker-mao" class="github-corner" aria-label="View source on Github"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
@@ -253,54 +263,277 @@
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block tag">
+  <div id="posts" class="posts-expand">
+    
 
-    <div id="posts" class="posts-collapse">
-      <div class="collection-title">
-        <h1>sqli-labs<small>标签</small>
-        </h1>
-      </div>
+  
 
-      
-        
+  
+  
+  
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/19/mac安装PyCrypto库/">
 
-      <h2 class="post-title">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="D4rk3r">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/head.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="1mpossible">
+    </span>
+
+    
+      <header class="post-header">
+
         
-            <a class="post-title-link" href="/2018/11/02/MAC下搭建PHP开发环境及sqli-labs安装/" itemprop="url">
-              
-                <span itemprop="name">MAC下搭建PHP开发环境及sqli-labs安装</span>
-              
-            </a>
         
-      </h2>
+          <h1 class="post-title" itemprop="name headline">mac安装PyCrypto库</h1>
+        
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-11-02T02:36:01+08:00"
-              content="2018-11-02" >
-          11-02
-        </time>
-      </div>
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-19T11:25:01+08:00">
+                2018-11-19
+              </time>
+            
 
-    </header>
-  </article>
+            
 
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/python/" itemprop="url" rel="index">
+                    <span itemprop="name">python</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/11/19/mac安装PyCrypto库/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2018/11/19/mac安装PyCrypto库/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2018/11/19/mac安装PyCrypto库/" class="leancloud_visitors" data-flag-title="mac安装PyCrypto库">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">热度&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+                 <span>℃</span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  143
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  1
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>之前一直想用这个库，结果在mac上安装老是报错，只能在ubuntu上用，今天花了一上午终于装上了</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#安装命令</span><br><span class="line">sudo easy_install PyCrypto</span><br></pre></td></tr></table></figure>
+<p><img src="https://upload-images.jianshu.io/upload_images/5808046-9ee587386ad8cd2c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5808046-94c43385a7731cf2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<ul>
+<li>看到是include文件夹有点问题，还有clang，于是将include改名，然后装个llvm</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mv /usr/local/include /usr/local/include.old</span><br><span class="line">brew install llvm</span><br></pre></td></tr></table></figure>
+<ul>
+<li>装上了llvm</li>
+</ul>
+<p><img src="https://upload-images.jianshu.io/upload_images/5808046-bd35cc40e7621726.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<ul>
+<li>然后报错，没有gmp这个库</li>
+</ul>
+<p><img src="https://upload-images.jianshu.io/upload_images/5808046-7be294c567cb0620.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<ul>
+<li>用brew重装gmp</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew reinstall gmp</span><br></pre></td></tr></table></figure>
+<p><img src="https://upload-images.jianshu.io/upload_images/5808046-fb8a913112b97f02.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<ul>
+<li>最后再安装PyCrypto</li>
+</ul>
+<p><img src="https://upload-images.jianshu.io/upload_images/5808046-50052c40c71d54c2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<ul>
+<li>测试成功，没有报错</li>
+</ul>
+<p><img src="https://upload-images.jianshu.io/upload_images/5808046-c9a326d5235b9617.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>参考文章：</p>
+<ul>
+<li><p><a href="https://stackoverflow.com/questions/48029309/cannot-compile-any-c-programs-error-unknown-type-name-uint8-t" target="_blank" rel="noopener">https://stackoverflow.com/questions/48029309/cannot-compile-any-c-programs-error-unknown-type-name-uint8-t</a></p>
+</li>
+<li><p><a href="https://cloud.tencent.com/developer/ask/93297" target="_blank" rel="noopener">https://cloud.tencent.com/developer/ask/93297</a></p>
+</li>
+</ul>
 
       
     </div>
+    
+    
+    
 
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    D4rk3r
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://yoursite.com/2018/11/19/mac安装PyCrypto库/" title="mac安装PyCrypto库">http://yoursite.com/2018/11/19/mac安装PyCrypto库/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/PyCrypto/" <i class="fa fa-tag"></i> PyCrypto</a>
+          
+            <a href="/tags/python/" <i class="fa fa-tag"></i> python</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/11/18/2018湖湘杯-writesup/" rel="next" title="[2018湖湘杯] writesup">
+                <i class="fa fa-chevron-left"></i> [2018湖湘杯] writesup
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -308,6 +541,13 @@
 
 
           
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
 
         </div>
         
@@ -573,6 +813,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
