@@ -72,7 +72,7 @@
 
 
 
-  <meta name="keywords" content="pwn,ctf,aarch64,rop,shellcode," />
+  <meta name="keywords" content="ctf,pwn,aarch64,rop,shellcode," />
 
 
 
@@ -84,7 +84,7 @@
 
 
 <meta name="description" content="题目是道aarch64的pwn题，有关环境搭建之前的文章有讲，然后开了NX，后面打远程的时候发现也确实开了NX     程序主要就是两个read函数写，第一个往bss段写，第二个往栈上写，并且可以栈溢出，这里一看就是rop但是我们没有libc，然后发现程序有个mprotect函数，所以利用思路可以是往bss写shellcode然后利用栈溢出执行mprotect让bss段可以执行，然后再跳转到我们">
-<meta name="keywords" content="pwn,ctf,aarch64,rop,shellcode">
+<meta name="keywords" content="ctf,pwn,aarch64,rop,shellcode">
 <meta property="og:type" content="article">
 <meta property="og:title" content="[第四届上海市大学生网络安全大赛] baby_arm">
 <meta property="og:url" content="http://yoursite.com/2018/11/05/第四届上海市大学生网络安全大赛-baby-arm/index.html">
@@ -531,9 +531,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/pwn/" <i class="fa fa-tag"></i> pwn</a>
-          
             <a href="/tags/ctf/" <i class="fa fa-tag"></i> ctf</a>
+          
+            <a href="/tags/pwn/" <i class="fa fa-tag"></i> pwn</a>
           
             <a href="/tags/aarch64/" <i class="fa fa-tag"></i> aarch64</a>
           
@@ -758,7 +758,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共38.7k字</span>
+  <span class="post-count">博客全站共38.8k字</span>
 </div>
 
         

