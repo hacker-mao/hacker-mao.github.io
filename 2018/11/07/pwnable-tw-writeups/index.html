@@ -95,7 +95,7 @@
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5808046-94b291db4d357bf9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5808046-9dc1a28f221afe64.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5808046-7c09cdf3e9f998fd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:updated_time" content="2018-12-21T09:00:37.742Z">
+<meta property="og:updated_time" content="2018-12-21T09:05:03.495Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="[pwnable.tw] writeups">
 <meta name="twitter:description" content="Start 程序很简单，直接用汇编int 80实现的读写退出，没开NX保护，然后有个栈溢出漏洞，先泄漏栈地址，然后往栈里写shellcode，再return to shellcode即可     这里我尝试自己写了个简单的shellcode  exp: 12345678910111213141516171819202122232425262728from pwn import *context.l">
@@ -443,7 +443,7 @@
 <li><a href="http://www.itkeyword.com/doc/045658890091729869/linux-asm-syscall" target="_blank" rel="noopener">http://www.itkeyword.com/doc/045658890091729869/linux-asm-syscall</a></li>
 </ul>
 <h1 id="calc"><a href="#calc" class="headerlink" title="calc"></a>calc</h1><ul>
-<li>主要分析思路这片文章写的很清楚: <a href="https://www.freebuf.com/articles/others-articles/132283.html" target="_blank" rel="noopener">Pwnable.tw刷题之calc</a>，由于调试的时候发现ebp刚好指向想写入’/bin/sh\x00’的地址，所以没有像作者那样算，直接泄漏ebp指向的地址</li>
+<li>主要分析思路这篇文章写的很清楚: <a href="https://www.freebuf.com/articles/others-articles/132283.html" target="_blank" rel="noopener">Pwnable.tw刷题之calc</a>，由于调试的时候发现ebp刚好指向想写入’/bin/sh\x00’的地址，所以没有像作者那样算，直接泄漏ebp指向的地址</li>
 </ul>
 <p><img src="https://upload-images.jianshu.io/upload_images/5808046-7c09cdf3e9f998fd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
 <p>exp:</p>
