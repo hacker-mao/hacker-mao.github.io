@@ -92,7 +92,7 @@
 <meta property="og:description" content="题目链接messageb0x 教科书般的32位栈溢出(不懂得可以看一步一步学rop 32位)，首先rop利用puts函数泄漏puts真实地址得到libc基址，然后得到system地址，/bin/sh地址再rop到有溢出地方执行system(‘/bin/sh\x00’)  exp: 12345678910111213141516171819202122232425262728293031323334">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5808046-1c5f828bd35aa7aa.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:updated_time" content="2018-12-26T08:27:07.295Z">
+<meta property="og:updated_time" content="2018-12-26T08:28:41.924Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="安恒杯12月月赛 (pwn)">
 <meta name="twitter:description" content="题目链接messageb0x 教科书般的32位栈溢出(不懂得可以看一步一步学rop 32位)，首先rop利用puts函数泄漏puts真实地址得到libc基址，然后得到system地址，/bin/sh地址再rop到有溢出地方执行system(‘/bin/sh\x00’)  exp: 12345678910111213141516171819202122232425262728293031323334">
@@ -421,8 +421,10 @@
 </ol>
 <p>有些细节需要注意：</p>
 <ol>
-<li>由于read函数的size太大，到达栈底，所以我们运行程序的时候需要加点argv或者env来扩大栈</li>
-<li>getnum函数的stack_chk_fail并没有被执行所以我们才能stack overflow</li>
+<li><p>由于read函数的size太大，到达栈底，所以我们运行程序的时候需要加点argv或者env来扩大栈</p>
+</li>
+<li><p>getnum函数的stack_chk_fail并没有被执行所以我们才能stack overflow</p>
+</li>
 </ol>
 <p><img src="https://upload-images.jianshu.io/upload_images/5808046-1c5f828bd35aa7aa.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
 <ol start="3">
@@ -499,6 +501,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/12/30/2018网鼎杯-半决赛writesup-pwn/" rel="prev" title="[2018网鼎杯] 半决赛writesup(pwn)">
+                [2018网鼎杯] 半决赛writesup(pwn) <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -582,7 +588,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">25</span>
+                  <span class="site-state-item-count">26</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -717,7 +723,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共49.8k字</span>
+  <span class="post-count">博客全站共50.9k字</span>
 </div>
 
         
