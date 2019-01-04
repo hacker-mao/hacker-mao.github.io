@@ -83,13 +83,13 @@
 
 
 
-<meta name="description" content="#题目链接 pwn100 一开始没看懂程序在干嘛，但是从fork函数和开了canary可以联想到使用stack smash泄漏canary然后rop，后来才读懂程序是对我们的输入进行base64解码，v21数组用于存放解码后的数据，然后我们可以输入0x200的base64数据，0x200/4*3=384大于v21的数组大小，所以产生了缓冲区溢出，通过这个来泄漏canary然后rop    exp:">
+<meta name="description" content="题目链接pwn100 一开始没看懂程序在干嘛，但是从fork函数和开了canary可以联想到使用stack smash泄漏canary然后rop，后来才读懂程序是对我们的输入进行base64解码，v21数组用于存放解码后的数据，然后我们可以输入0x200的base64数据，0x200/4*3=384大于v21的数组大小，所以产生了缓冲区溢出，通过这个来泄漏canary然后rop    exp: 1">
 <meta name="keywords" content="pwn,ctf">
 <meta property="og:type" content="article">
 <meta property="og:title" content="[2017湖湘杯] writesup(pwn)">
 <meta property="og:url" content="http://yoursite.com/2019/01/03/2017湖湘杯-writesup-pwn/index.html">
 <meta property="og:site_name" content="1mpossible">
-<meta property="og:description" content="#题目链接 pwn100 一开始没看懂程序在干嘛，但是从fork函数和开了canary可以联想到使用stack smash泄漏canary然后rop，后来才读懂程序是对我们的输入进行base64解码，v21数组用于存放解码后的数据，然后我们可以输入0x200的base64数据，0x200/4*3=384大于v21的数组大小，所以产生了缓冲区溢出，通过这个来泄漏canary然后rop    exp:">
+<meta property="og:description" content="题目链接pwn100 一开始没看懂程序在干嘛，但是从fork函数和开了canary可以联想到使用stack smash泄漏canary然后rop，后来才读懂程序是对我们的输入进行base64解码，v21数组用于存放解码后的数据，然后我们可以输入0x200的base64数据，0x200/4*3=384大于v21的数组大小，所以产生了缓冲区溢出，通过这个来泄漏canary然后rop    exp: 1">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5808046-f28c3e40f896bfc9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5808046-f98dacf80f58a4d3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
@@ -97,10 +97,10 @@
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5808046-e9ba135a8c802b53.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5808046-395e14020b1a349d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5808046-04e9cec8dfc4aeb8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:updated_time" content="2019-01-03T12:41:39.341Z">
+<meta property="og:updated_time" content="2019-01-03T12:43:47.969Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="[2017湖湘杯] writesup(pwn)">
-<meta name="twitter:description" content="#题目链接 pwn100 一开始没看懂程序在干嘛，但是从fork函数和开了canary可以联想到使用stack smash泄漏canary然后rop，后来才读懂程序是对我们的输入进行base64解码，v21数组用于存放解码后的数据，然后我们可以输入0x200的base64数据，0x200/4*3=384大于v21的数组大小，所以产生了缓冲区溢出，通过这个来泄漏canary然后rop    exp:">
+<meta name="twitter:description" content="题目链接pwn100 一开始没看懂程序在干嘛，但是从fork函数和开了canary可以联想到使用stack smash泄漏canary然后rop，后来才读懂程序是对我们的输入进行base64解码，v21数组用于存放解码后的数据，然后我们可以输入0x200的base64数据，0x200/4*3=384大于v21的数组大小，所以产生了缓冲区溢出，通过这个来泄漏canary然后rop    exp: 1">
 <meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/5808046-f28c3e40f896bfc9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 
 
@@ -418,8 +418,7 @@
       
 
       
-        <p>#<a href="https://github.com/hacker-mao/ctf_repo/tree/master/2017%E6%B9%96%E6%B9%98%E6%9D%AF" target="_blank" rel="noopener">题目链接</a></p>
-<h1 id="pwn100"><a href="#pwn100" class="headerlink" title="pwn100"></a>pwn100</h1><ul>
+        <h1 id="题目链接"><a href="#题目链接" class="headerlink" title="题目链接"></a><a href="https://github.com/hacker-mao/ctf_repo/tree/master/2017%E6%B9%96%E6%B9%98%E6%9D%AF" target="_blank" rel="noopener">题目链接</a></h1><h1 id="pwn100"><a href="#pwn100" class="headerlink" title="pwn100"></a>pwn100</h1><ul>
 <li>一开始没看懂程序在干嘛，但是从fork函数和开了canary可以联想到使用stack smash泄漏canary然后rop，后来才读懂程序是对我们的输入进行base64解码，v21数组用于存放解码后的数据，然后我们可以输入0x200的base64数据，0x200/4*3=384大于v21的数组大小，所以产生了缓冲区溢出，通过这个来泄漏canary然后rop</li>
 </ul>
 <p><img src="https://upload-images.jianshu.io/upload_images/5808046-f28c3e40f896bfc9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
@@ -666,7 +665,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#pwn100"><span class="nav-number">1.</span> <span class="nav-text">pwn100</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#pwn200"><span class="nav-number">2.</span> <span class="nav-text">pwn200</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#pwn300"><span class="nav-number">3.</span> <span class="nav-text">pwn300</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#pwn400"><span class="nav-number">4.</span> <span class="nav-text">pwn400</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#题目链接"><span class="nav-number">1.</span> <span class="nav-text">题目链接</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#pwn100"><span class="nav-number">2.</span> <span class="nav-text">pwn100</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#pwn200"><span class="nav-number">3.</span> <span class="nav-text">pwn200</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#pwn300"><span class="nav-number">4.</span> <span class="nav-text">pwn300</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#pwn400"><span class="nav-number">5.</span> <span class="nav-text">pwn400</span></a></li></ol></div>
             
 
           </div>
