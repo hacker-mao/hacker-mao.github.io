@@ -414,7 +414,8 @@
       
         
           
-          题目地址：https://github.com/hacker-mao/ctf_repo/tree/master/%E6%8A%A4%E7%BD%91%E6%9D%AF2019/pwn
+          题目地址：
+https://github.com/hacker-mao/ctf_repo/tree/master/%E6%8A%A4%E7%BD%91%E6%9D%AF2019/pwn
 一共4道题，比赛时间太短，赛后花了一天时间弄出3道，继续学习
 mergeheap
 libc2.27，典型的tcache题目，程序的漏洞在于off by one 
@@ -423,7 +424,7 @@ libc2.27，典型的tcache题目，程序的漏洞在于off by one
 
 当分配的堆块占用了下一chunk的pre_size位时，strcpy的时候会将下一chunk的size也复制，再配合strcat会溢出一个字节
 
-首先先填满tcache，为了下一次free时候将会放入unsorted bin中，然后构造4个不和填充
+首先先填满tcache，为了下一次free时候将会放入unsorted bin中，然后构造4个不和填
           ...
           <!--noindex-->
           <div class="post-button text-center">
