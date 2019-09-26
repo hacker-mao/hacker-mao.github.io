@@ -6,10 +6,10 @@
 
 
 <html class="theme-next muse use-motion" lang="zh-Hans">
-<head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
 <link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
@@ -24,8 +24,8 @@
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
 
 
 
@@ -44,7 +44,7 @@
 
   
   
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
 
 
 
@@ -52,9 +52,9 @@
 
 
 
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
 
-<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
 
 
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
@@ -72,7 +72,7 @@
 
 
 
-  <meta name="keywords" content="ctf,re,pin," />
+  <meta name="keywords" content="ctf,re,pin,">
 
 
 
@@ -126,7 +126,7 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/09/24/使用pin解决CTF的部分逆向题/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/09/24/使用pin解决CTF的部分逆向题/">
 
 
 
@@ -164,7 +164,7 @@
   <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
-<a href="https://github.com/hacker-mao" class="github-corner" aria-label="View source on Github"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+<a href="https://github.com/hacker-mao" class="github-corner" aria-label="View source on Github"><svg width="80" height="80" viewbox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
@@ -172,7 +172,7 @@
     
 
     <div class="custom-logo-site-title">
-      <a href="/"  class="brand" rel="start">
+      <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">1mpossible</span>
         <span class="logo-line-after"><i></i></span>
@@ -202,7 +202,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
             
             首页
           </a>
@@ -212,7 +212,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
             
             标签
           </a>
@@ -222,7 +222,7 @@
         <li class="menu-item menu-item-categories">
           <a href="/categories/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
             
             分类
           </a>
@@ -232,7 +232,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
             
             归档
           </a>
@@ -275,7 +275,7 @@
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="D4rk3r">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content>
       <meta itemprop="image" content="/images/head.jpg">
     </span>
 
@@ -311,7 +311,7 @@
           </span>
 
           
-            <span class="post-category" >
+            <span class="post-category">
             
               <span class="post-meta-divider">|</span>
             
@@ -417,25 +417,33 @@
 <h1 id="pin的安装及使用"><a href="#pin的安装及使用" class="headerlink" title="pin的安装及使用"></a>pin的安装及使用</h1><p>大家可以去看<a href="https://ctf-wiki.github.io/ctf-tools/binary_core_tools/instrumentation/intel_pin/#pin" target="_blank" rel="noopener">ctf-wiki</a>上的教程，我也是跟着教程复现了几道题</p>
 <h1 id="pin-in-ctf"><a href="#pin-in-ctf" class="headerlink" title="pin in ctf"></a>pin in ctf</h1><h2 id="NDH2K13-crackme-500"><a href="#NDH2K13-crackme-500" class="headerlink" title="NDH2K13-crackme-500"></a>NDH2K13-crackme-500</h2><p>首先这道题ida一打开就是各种报错，所以我们粗暴一点直接上pin试试，由于wiki已经讲的很详细了，这里我就直接上脚本了，我下的pin3.7的不知道为什么无法输出结果到控制台(如果有大佬知道怎么修改可以输出到控制台可以告诉我！)，所以对wiki上的脚本做了一点修改，首先猜测输入的长度(<strong><em>脚本里的myinscount1.so其实就是inscount1.so</em></strong>)</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">#!/usr/bin/env python</span><br><span class="line"># -*- coding: utf-8 -*-</span><br><span class="line"></span><br><span class="line">from subprocess import Popen, PIPE</span><br><span class="line">from sys import argv</span><br><span class="line">import string</span><br><span class="line">import time</span><br><span class="line"></span><br><span class="line">pinPath = &quot;/home/hacker_mao/pin-3.7/pin&quot;</span><br><span class="line">pinInit = lambda tool, elf: Popen([pinPath, &apos;-t&apos;, tool, &apos;--&apos;, elf], stdin = PIPE, stdout = PIPE)</span><br><span class="line">pinWrite = lambda cont: pin.stdin.write(cont)</span><br><span class="line">#pinRead = lambda : open(&apos;./myinscount1.out&apos;,&apos;r&apos;).read().strip(&apos;\n&apos;)</span><br><span class="line">def pinRead():</span><br><span class="line">	#f = open(&apos;./inscount.out&apos;,&apos;r&apos;)</span><br><span class="line">	f = open(&apos;./myinscount1.out&apos;,&apos;r&apos;)</span><br><span class="line">	file  = f.read().strip(&apos;\n&apos;)</span><br><span class="line">	f.close()</span><br><span class="line">	return file</span><br><span class="line"></span><br><span class="line">if __name__ == &quot;__main__&quot;:</span><br><span class="line">    last = 0</span><br><span class="line">    for i in xrange(1, 30):</span><br><span class="line">        #pin = pinInit(&quot;./inscount0.so&quot;, &quot;./crackme&quot;)</span><br><span class="line">        pin = pinInit(&quot;./myinscount1.so&quot;, &quot;./crackme&quot;)</span><br><span class="line">        pinWrite(&quot;a&quot; * i + &apos;\n&apos;)</span><br><span class="line">        time.sleep(0.5)</span><br><span class="line">        #print pinRead()</span><br><span class="line">        now = int(pinRead().split(&quot;Count &quot;)[1])</span><br><span class="line">        </span><br><span class="line">        print &quot;inputLen(&#123;:2d&#125;) -&gt; ins(&#123;&#125;) -&gt; delta(&#123;&#125;)&quot;.format(i, now, now - last)</span><br><span class="line">        last = now</span><br></pre></td></tr></table></figure>
+
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">☁  obj-intel64  python guessLen.py </span><br><span class="line">inputLen( 1) -&gt; ins(161503) -&gt; delta(161503)</span><br><span class="line">inputLen( 2) -&gt; ins(164299) -&gt; delta(2796)</span><br><span class="line">inputLen( 3) -&gt; ins(167095) -&gt; delta(2796)</span><br><span class="line">inputLen( 4) -&gt; ins(169891) -&gt; delta(2796)</span><br><span class="line">inputLen( 5) -&gt; ins(172687) -&gt; delta(2796)</span><br><span class="line">inputLen( 6) -&gt; ins(175483) -&gt; delta(2796)</span><br><span class="line">inputLen( 7) -&gt; ins(178279) -&gt; delta(2796)</span><br><span class="line">inputLen( 8) -&gt; ins(184000) -&gt; delta(5721)</span><br><span class="line">inputLen( 9) -&gt; ins(183872) -&gt; delta(-128)</span><br><span class="line">inputLen(10) -&gt; ins(186668) -&gt; delta(2796)</span><br><span class="line">inputLen(11) -&gt; ins(189464) -&gt; delta(2796)</span><br><span class="line">inputLen(12) -&gt; ins(192260) -&gt; delta(2796)</span><br><span class="line">inputLen(13) -&gt; ins(195056) -&gt; delta(2796)</span><br><span class="line"></span><br><span class="line">#可以看到输入长度为8的时候指令变化较大，所以我们要输入东西的长度很大可能是8</span><br></pre></td></tr></table></figure>
+
 <p>接下来爆破内容</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line">#!/usr/bin/env python</span><br><span class="line"># -*- coding: utf-8 -*-</span><br><span class="line"></span><br><span class="line">from subprocess import Popen, PIPE</span><br><span class="line">from sys import argv</span><br><span class="line">import string</span><br><span class="line">import pdb</span><br><span class="line">import time</span><br><span class="line"></span><br><span class="line">pinPath = &quot;/home/hacker_mao/pin-3.7/pin&quot;</span><br><span class="line">pinInit = lambda tool, elf: Popen([pinPath, &apos;-t&apos;, tool, &apos;--&apos;, elf], stdin = PIPE, stdout = PIPE)</span><br><span class="line">pinWrite = lambda cont: pin.stdin.write(cont)</span><br><span class="line">#pinRead = lambda : pin.communicate()[0]</span><br><span class="line">def pinRead():</span><br><span class="line">    #f = open(&apos;./inscount.out&apos;,&apos;r&apos;)</span><br><span class="line">    f = open(&apos;./myinscount1.out&apos;,&apos;r&apos;)</span><br><span class="line">    file  = f.read().strip(&apos;\n&apos;)</span><br><span class="line">    f.close()</span><br><span class="line">    return file</span><br><span class="line"></span><br><span class="line">if __name__ == &quot;__main__&quot;:</span><br><span class="line">    last = 0</span><br><span class="line">    #  dic = map(chr, xrange(0x20, 0x80))</span><br><span class="line">    dic = string.ascii_letters + string.digits + &quot;+_ &quot;</span><br><span class="line">    pwd = &apos;?&apos; * 8</span><br><span class="line">    dicIdx = 0</span><br><span class="line">    pwdIdx = 0</span><br><span class="line"></span><br><span class="line">    while True:</span><br><span class="line">        pwd = pwd[: pwdIdx] + dic[dicIdx] + pwd[pwdIdx + 1: ]</span><br><span class="line">        #  pdb.set_trace()</span><br><span class="line">        pin = pinInit(&quot;./myinscount1.so&quot;, &quot;./crackme&quot;)</span><br><span class="line">        pinWrite(pwd + &apos;\n&apos;)</span><br><span class="line">        time.sleep(1)</span><br><span class="line"></span><br><span class="line">        now = int(pinRead().split(&quot;Count &quot;)[1])</span><br><span class="line"></span><br><span class="line">        print &quot;input(&#123;&#125;) -&gt; now(&#123;&#125;) -&gt; delta(&#123;&#125;)&quot;.format(pwd, now, now - last)</span><br><span class="line"></span><br><span class="line">        if now - last &gt; 2000 and dicIdx:</span><br><span class="line">            pwdIdx += 1</span><br><span class="line">            dicIdx = -1</span><br><span class="line">            last = 0</span><br><span class="line">            if pwdIdx &gt;= len(pwd):</span><br><span class="line">                print &quot;Found pwd: &#123;&#125;&quot;.format(pwd)</span><br><span class="line">                break</span><br><span class="line"></span><br><span class="line">        dicIdx += 1</span><br><span class="line">        last = now</span><br></pre></td></tr></table></figure>
+
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">☁  obj-intel64  python guessPWD.py </span><br><span class="line">input(a???????) -&gt; now(184000) -&gt; delta(184000)</span><br><span class="line">input(b???????) -&gt; now(184000) -&gt; delta(0)</span><br><span class="line">input(c???????) -&gt; now(184000) -&gt; delta(0)</span><br><span class="line">input(d???????) -&gt; now(184000) -&gt; delta(0)</span><br><span class="line">input(e???????) -&gt; now(184000) -&gt; delta(0)</span><br><span class="line">...</span><br><span class="line">input(x???????) -&gt; now(184000) -&gt; delta(0)</span><br><span class="line">input(y???????) -&gt; now(184000) -&gt; delta(0)</span><br><span class="line">input(z???????) -&gt; now(184000) -&gt; delta(0)</span><br><span class="line">input(A???????) -&gt; now(188037) -&gt; delta(4037)</span><br><span class="line">input(Aa??????) -&gt; now(188037) -&gt; delta(0)</span><br><span class="line">input(Ab??????) -&gt; now(188037) -&gt; delta(0)</span><br><span class="line">...</span><br><span class="line">input(AzI0wBsQ) -&gt; now(212265) -&gt; delta(0)</span><br><span class="line">input(AzI0wBsR) -&gt; now(212265) -&gt; delta(0)</span><br><span class="line">input(AzI0wBsS) -&gt; now(212265) -&gt; delta(0)</span><br><span class="line">input(AzI0wBsT) -&gt; now(212265) -&gt; delta(0)</span><br><span class="line">input(AzI0wBsU) -&gt; now(212265) -&gt; delta(0)</span><br><span class="line">input(AzI0wBsV) -&gt; now(212265) -&gt; delta(0)</span><br><span class="line">input(AzI0wBsW) -&gt; now(212265) -&gt; delta(0)</span><br><span class="line">input(AzI0wBsX) -&gt; now(216172) -&gt; delta(3907)</span><br><span class="line">Found pwd: AzI0wBsX</span><br><span class="line"></span><br><span class="line">☁  obj-intel64  ./crackme </span><br><span class="line">Jonathan Salwan loves you &lt;3</span><br><span class="line">----------------------------</span><br><span class="line"></span><br><span class="line">Password: AzI0wBsX</span><br><span class="line">Good password</span><br></pre></td></tr></table></figure>
+
 <p>很快我们就轻松得得到了pwd</p>
 <h2 id="QCTF-ollvm"><a href="#QCTF-ollvm" class="headerlink" title="QCTF-ollvm"></a>QCTF-ollvm</h2><p><img src="https://upload-images.jianshu.io/upload_images/5808046-5252b71628ce592f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="main"></p>
 <p>这题ida打开也挺复杂的，但是告诉了我们输入的长度要是38，所以我们也尝试一下用pin，但是一开始我在ubuntu无法运行这道题</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">☁  ollvm  ldd ollvm                                                            </span><br><span class="line">	linux-vdso.so.1 =&gt;  (0x00007ffebf98c000)</span><br><span class="line">	libgmpxx.so.4 =&gt; not found</span><br><span class="line">	libgmp.so.10 =&gt; /usr/lib/x86_64-linux-gnu/libgmp.so.10 (0x00007fa01c9f6000)</span><br><span class="line">	libstdc++.so.6 =&gt; /usr/lib/x86_64-linux-gnu/libstdc++.so.6 (0x00007fa01c674000)</span><br><span class="line">	libm.so.6 =&gt; /lib/x86_64-linux-gnu/libm.so.6 (0x00007fa01c36a000)</span><br><span class="line">	libgcc_s.so.1 =&gt; /lib/x86_64-linux-gnu/libgcc_s.so.1 (0x00007fa01c154000)</span><br><span class="line">	libc.so.6 =&gt; /lib/x86_64-linux-gnu/libc.so.6 (0x00007fa01bd8a000)</span><br><span class="line">	/lib64/ld-linux-x86-64.so.2 (0x00005642fe7ab000)</span><br></pre></td></tr></table></figure>
+
 <p>上网找了一下，发现是我的linux没有安装gmp,于是先装个gmp</p>
 <h3 id="安装gmp"><a href="#安装gmp" class="headerlink" title="安装gmp"></a>安装gmp</h3><ol>
 <li><p>下载最新gmp [ gmp_6.1.2+dfsg.orig.tar.xz],解压(<a href="https://launchpad.net/ubuntu/+archive/primary/+sourcefiles/gmp/2:6.1.2+dfsg-2/gmp_6.1.2+dfsg.orig.tar.xz" target="_blank" rel="noopener">https://launchpad.net/ubuntu/+archive/primary/+sourcefiles/gmp/2:6.1.2+dfsg-2/gmp_6.1.2+dfsg.orig.tar.xz</a>)</p>
 </li>
 <li><p>安装gmp</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">#安装m4，不然会报错</span><br><span class="line">sudo apt-get install build-essential m4</span><br><span class="line"></span><br><span class="line"># 编译准备</span><br><span class="line">./configure --prefix=/usr \</span><br><span class="line">--enable-cxx \</span><br><span class="line">--disable-static \</span><br><span class="line">--docdir=/usr/share/doc/gmp-6.1.2</span><br><span class="line"></span><br><span class="line"># 编译包和生成HTML文档</span><br><span class="line">make</span><br><span class="line">make html</span><br><span class="line">make check</span><br><span class="line"></span><br><span class="line"># 安装包和相关文档</span><br><span class="line">sudo make install</span><br><span class="line">make install-html</span><br><span class="line"></span><br><span class="line"># 然后我们的ollvm文件就能正常运行了</span><br><span class="line">☁  ollvm  ldd ollvm                                                            </span><br><span class="line">	linux-vdso.so.1 =&gt;  (0x00007ffebf98c000)</span><br><span class="line">	libgmpxx.so.4 =&gt; /usr/lib/libgmpxx.so.4 (0x00007fa01cc76000)</span><br><span class="line">	libgmp.so.10 =&gt; /usr/lib/x86_64-linux-gnu/libgmp.so.10 (0x00007fa01c9f6000)</span><br><span class="line">	libstdc++.so.6 =&gt; /usr/lib/x86_64-linux-gnu/libstdc++.so.6 (0x00007fa01c674000)</span><br><span class="line">	libm.so.6 =&gt; /lib/x86_64-linux-gnu/libm.so.6 (0x00007fa01c36a000)</span><br><span class="line">	libgcc_s.so.1 =&gt; /lib/x86_64-linux-gnu/libgcc_s.so.1 (0x00007fa01c154000)</span><br><span class="line">	libc.so.6 =&gt; /lib/x86_64-linux-gnu/libc.so.6 (0x00007fa01bd8a000)</span><br><span class="line">	/lib64/ld-linux-x86-64.so.2 (0x00005642fe7ab000)</span><br><span class="line"></span><br><span class="line">☁  ollvm  ./ollvm asdsda</span><br><span class="line">flag require 38 chars</span><br></pre></td></tr></table></figure>
+
 </li>
 </ol>
 <p>然后就可以上我们的脚本了</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line">#!/usr/bin/env python</span><br><span class="line"># -*- coding: utf-8 -*-</span><br><span class="line"></span><br><span class="line">from subprocess import Popen, PIPE</span><br><span class="line">from sys import argv</span><br><span class="line">import string</span><br><span class="line">import pdb</span><br><span class="line">import time</span><br><span class="line"></span><br><span class="line">pinPath = &quot;/home/hacker_mao/pin-3.7/pin&quot;</span><br><span class="line">pinInit = lambda tool, elf, flag: Popen([pinPath, &apos;-t&apos;, tool, &apos;--&apos;, elf, flag] , stdout = PIPE)</span><br><span class="line">pinWrite = lambda cont: pin.stdin.write(cont)</span><br><span class="line">#pinRead = lambda : pin.communicate()[0]</span><br><span class="line">def pinRead():</span><br><span class="line">    f = open(&apos;./inscount.out&apos;,&apos;r&apos;)</span><br><span class="line">    #f = open(&apos;./myinscount1.out&apos;,&apos;r&apos;)</span><br><span class="line">    file  = f.read().strip(&apos;\n&apos;)</span><br><span class="line">    f.close()</span><br><span class="line">    return file</span><br><span class="line"></span><br><span class="line">if __name__ == &quot;__main__&quot;:</span><br><span class="line">    last = 0</span><br><span class="line">    #  dic = map(chr, xrange(0x20, 0x80))</span><br><span class="line">    dic = string.ascii_letters + string.digits + &quot;+_ &#123;&#125;&quot;</span><br><span class="line">    pwd = &apos;_&apos; * 38</span><br><span class="line">    dicIdx = 0</span><br><span class="line">    pwdIdx = 0</span><br><span class="line"></span><br><span class="line">    while True:</span><br><span class="line">        pwd = pwd[: pwdIdx] + dic[dicIdx] + pwd[pwdIdx + 1: ]</span><br><span class="line">        #  pdb.set_trace()</span><br><span class="line">        #pin = pinInit(&quot;./myinscount1.so&quot;, &quot;./ollvm&quot;)</span><br><span class="line">        pin = pinInit(&quot;./inscount0.so&quot;, &quot;./ollvm&quot;,pwd)</span><br><span class="line">        #pinWrite(pwd + &apos;\n&apos;)</span><br><span class="line">        time.sleep(5)</span><br><span class="line">        now = int(pinRead().split(&quot;Count &quot;)[1])</span><br><span class="line"></span><br><span class="line">        print &quot;input(&#123;&#125;) -&gt; now(&#123;&#125;) -&gt; delta(&#123;&#125;)&quot;.format(pwd, now, now - last)</span><br><span class="line"></span><br><span class="line">        #if now - last &gt; 2000 and dicIdx:</span><br><span class="line">        if now - last &gt; 2000 and now - last &lt; 6027776:</span><br><span class="line">            pwdIdx += 1</span><br><span class="line">            dicIdx = -1</span><br><span class="line">            last = 0</span><br><span class="line">            if pwdIdx &gt;= len(pwd):</span><br><span class="line">                print &quot;Found pwd: &#123;&#125;&quot;.format(pwd)</span><br><span class="line">                break</span><br><span class="line"></span><br><span class="line">        dicIdx += 1</span><br><span class="line">        last = now</span><br></pre></td></tr></table></figure>
+
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">☁  ollvm  python guessPWD.py</span><br><span class="line">input(a_____________________________________) -&gt; now(6027776) -&gt; delta(6027776)</span><br><span class="line">input(b_____________________________________) -&gt; now(6027801) -&gt; delta(25)</span><br><span class="line">input(c_____________________________________) -&gt; now(6027235) -&gt; delta(-566)</span><br><span class="line">...</span><br><span class="line">input(P_____________________________________) -&gt; now(6027750) -&gt; delta(504)</span><br><span class="line">input(Q_____________________________________) -&gt; now(7326495) -&gt; delta(1298745)</span><br><span class="line">input(Qa____________________________________) -&gt; now(7327120) -&gt; delta(625)</span><br><span class="line">input(Qb____________________________________) -&gt; now(7327070) -&gt; delta(-50)</span><br><span class="line">...</span><br><span class="line">input(QCTF&#123;5Ym4aOEww2NcZcvUPOWKYMnPaqPywR2m8) -&gt; now(54119926) -&gt; delta(30)</span><br><span class="line">input(QCTF&#123;5Ym4aOEww2NcZcvUPOWKYMnPaqPywR2m9) -&gt; now(54119867) -&gt; delta(-59)</span><br><span class="line">input(QCTF&#123;5Ym4aOEww2NcZcvUPOWKYMnPaqPywR2m+) -&gt; now(54119910) -&gt; delta(43)</span><br><span class="line">input(QCTF&#123;5Ym4aOEww2NcZcvUPOWKYMnPaqPywR2m_) -&gt; now(54119894) -&gt; delta(-16)</span><br><span class="line">input(QCTF&#123;5Ym4aOEww2NcZcvUPOWKYMnPaqPywR2m ) -&gt; now(54119908) -&gt; delta(14)</span><br><span class="line">input(QCTF&#123;5Ym4aOEww2NcZcvUPOWKYMnPaqPywR2m&#123;) -&gt; now(54119875) -&gt; delta(-33)</span><br><span class="line">input(QCTF&#123;5Ym4aOEww2NcZcvUPOWKYMnPaqPywR2m&#125;) -&gt; now(54120465) -&gt; delta(590)</span><br><span class="line">#最后一位可能需要自己处理一下</span><br></pre></td></tr></table></figure>
+
 <p>参考文章： </p>
 <ol>
 <li><a href="https://blog.csdn.net/win_in_action/article/details/46956245" target="_blank" rel="noopener">https://blog.csdn.net/win_in_action/article/details/46956245</a></li>
@@ -479,11 +487,11 @@
       
         <div class="post-tags">
           
-            <a href="/tags/ctf/" <i class="fa fa-tag"></i> ctf</a>
+            <a href="/tags/ctf/" <i class="fa fa-tag"> ctf</a>
           
-            <a href="/tags/re/" <i class="fa fa-tag"></i> re</a>
+            <a href="/tags/re/" <i class="fa fa-tag"> re</a>
           
-            <a href="/tags/pin/" <i class="fa fa-tag"></i> pin</a>
+            <a href="/tags/pin/" <i class="fa fa-tag"> pin</a>
           
         </div>
       
@@ -577,9 +585,7 @@
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
-              <img class="site-author-image" itemprop="image"
-                src="/images/head.jpg"
-                alt="D4rk3r" />
+              <img class="site-author-image" itemprop="image" src="/images/head.jpg" alt="D4rk3r">
             
               <p class="site-author-name" itemprop="name">D4rk3r</p>
               <p class="site-description motion-element" itemprop="description">Impossible -> I'm possible</p>
@@ -740,7 +746,7 @@
 
         
       </div>
-    </footer>
+    </div></footer>
 
     
       <div class="back-to-top">
@@ -1028,7 +1034,7 @@
 
   
 
-</body>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/Epsilon2.1.model.json"},"display":{"position":"right","width":300,"height":400},"mobile":{"show":true},"log":false});</script></body>
 </html>
 
 
