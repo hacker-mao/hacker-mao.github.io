@@ -72,7 +72,7 @@
 
 
 
-  <meta name="keywords" content="pwn,ctf,">
+  <meta name="keywords" content="ctf,pwn,">
 
 
 
@@ -84,7 +84,7 @@
 
 
 <meta name="description" content="题目链接lin  有个后门，有栈溢出，但是程序会检测返回地址，直接把返回地址改到这里绕过   exp : 12345678910from pwn import *p = process(&amp;apos;./lin&amp;apos;)payload = &amp;apos;a&amp;apos;*0x20 + &amp;apos;b&amp;apos;*8 + p64(0x400977)gdb.attach(p,&amp;apos;b *0x400">
-<meta name="keywords" content="pwn,ctf">
+<meta name="keywords" content="ctf,pwn">
 <meta property="og:type" content="article">
 <meta property="og:title" content="[2018网鼎杯] 总决赛writesup(pwn)">
 <meta property="og:url" content="http://yoursite.com/2019/01/02/2018网鼎杯-总决赛writesup-pwn/index.html">
@@ -465,9 +465,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/pwn/" <i class="fa fa-tag"> pwn</a>
-          
             <a href="/tags/ctf/" <i class="fa fa-tag"> ctf</a>
+          
+            <a href="/tags/pwn/" <i class="fa fa-tag"> pwn</a>
           
         </div>
       
@@ -673,7 +673,7 @@
       <div class="footer-inner">
         <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
-<div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+<div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
@@ -711,6 +711,10 @@
   <div class="powered-by"></div>
   <span class="post-count">博客全站共71.6k字</span>
 </div>
+
+<img src="https://static.dy208.cn/o_1dfilp8ruo521thr1hvf18ji17soa.png">
+<a href="http://www.beian.miit.gov.cn/" style="color:#f72b07" target="_blank">粤ICP备16096118号-1</a>
+
 
         
 
