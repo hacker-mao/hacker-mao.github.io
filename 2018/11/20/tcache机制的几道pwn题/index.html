@@ -72,7 +72,7 @@
 
 
 
-  <meta name="keywords" content="ctf,pwn,tcache,">
+  <meta name="keywords" content="pwn,ctf,tcache,">
 
 
 
@@ -84,7 +84,7 @@
 
 
 <meta name="description" content="tcache是libc2.26之后引进的一种新机制，之前一直没做到，然后做几道题熟悉一下 原理及机制 简单来说就是类似fastbin一样的东西，每条链上最多可以有 7 个 chunk，free的时候当tcache满了才放入fastbin，unsorted bin，malloc的时候优先去tcache找  http://m4x.fun/post/dive-into-tcache/  https://">
-<meta name="keywords" content="ctf,pwn,tcache">
+<meta name="keywords" content="pwn,ctf,tcache">
 <meta property="og:type" content="article">
 <meta property="og:title" content="tcache机制的几道pwn题">
 <meta property="og:url" content="http://yoursite.com/2018/11/20/tcache机制的几道pwn题/index.html">
@@ -498,9 +498,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/ctf/" <i class="fa fa-tag"> ctf</a>
-          
             <a href="/tags/pwn/" <i class="fa fa-tag"> pwn</a>
+          
+            <a href="/tags/ctf/" <i class="fa fa-tag"> ctf</a>
           
             <a href="/tags/tcache/" <i class="fa fa-tag"> tcache</a>
           
@@ -746,6 +746,7 @@
   <div class="powered-by"></div>
   <span class="post-count">博客全站共71.6k字</span>
 </div>
+
 
 <img src="https://static.dy208.cn/o_1dfilp8ruo521thr1hvf18ji17soa.png">
 <a href="http://www.beian.miit.gov.cn/" style="color:#f72b07" target="_blank">粤ICP备16096118号-1</a>

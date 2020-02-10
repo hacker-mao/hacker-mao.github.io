@@ -72,7 +72,7 @@
 
 
 
-  <meta name="keywords" content="ctf,pwn,">
+  <meta name="keywords" content="pwn,ctf,">
 
 
 
@@ -84,7 +84,7 @@
 
 
 <meta name="description" content="题目链接pwn100 一开始没看懂程序在干嘛，但是从fork函数和开了canary可以联想到使用stack smash泄漏canary然后rop，后来才读懂程序是对我们的输入进行base64解码，v21数组用于存放解码后的数据，然后我们可以输入0x200的base64数据，0x200/4*3=384大于v21的数组大小，所以产生了缓冲区溢出，通过这个来泄漏canary然后rop    exp: 1">
-<meta name="keywords" content="ctf,pwn">
+<meta name="keywords" content="pwn,ctf">
 <meta property="og:type" content="article">
 <meta property="og:title" content="[2017湖湘杯] writesup(pwn)">
 <meta property="og:url" content="http://yoursite.com/2019/01/03/2017湖湘杯-writesup-pwn/index.html">
@@ -484,9 +484,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/ctf/" <i class="fa fa-tag"> ctf</a>
-          
             <a href="/tags/pwn/" <i class="fa fa-tag"> pwn</a>
+          
+            <a href="/tags/ctf/" <i class="fa fa-tag"> ctf</a>
           
         </div>
       
@@ -730,6 +730,7 @@
   <div class="powered-by"></div>
   <span class="post-count">博客全站共71.6k字</span>
 </div>
+
 
 <img src="https://static.dy208.cn/o_1dfilp8ruo521thr1hvf18ji17soa.png">
 <a href="http://www.beian.miit.gov.cn/" style="color:#f72b07" target="_blank">粤ICP备16096118号-1</a>
